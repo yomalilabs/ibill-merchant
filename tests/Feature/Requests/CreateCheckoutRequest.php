@@ -12,16 +12,13 @@ class CreateCheckoutRequest extends TestCase
     /** @test */
     public function create_checkout()
     {
-        $ibill = new IBillClient([
+        $client = new IBillClient([
             'accessToken' => 'access-token'
         ]);
 
         try {
-            $checkout = new Checkout([
-                'amount' => 1000,
-            ]);
-
-            $response = $ibill->createCheckout($checkout);
+            $checkout = new Checkout(['amount' => 1000]);
+            $response = $client->createCheckout($checkout);
         } catch (ApiException $e) {
         }
 
@@ -36,19 +33,17 @@ class CreateCheckoutRequest extends TestCase
     }
 
     /** @test */
-    public function validate_private_key()
+    public function validate_access_token()
     {
-        $client = new \GuzzleHttp\Client();
-        $headers = ['not-valid' => 'private-key-123', 'Accept' => 'application/json'];
-        $response = $client->request('POST', constant("APP_URL") . '/session/create', ['headers' => $headers]);
+        $client = new IBillClient([
+            'accessToken' => 'faulty-token'
+        ]);
 
-        $body = json_decode($response->getBody()->getContents());
-
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(0, $body->success);
-        $this->assertEquals('application/json', $response->getHeaderLine('content-type'));
-        $this->assertNotNull($body->error);
-
-        // do assert into the database if the token is linked to the business
+        try {
+            $checkout = new Checkout(['amount' => 1000]);
+            $response = $client->createCheckout($checkout);
+        } catch (ApiException $e) {
+            $this->assertNotNull($e->error);
+        }
     }
 }

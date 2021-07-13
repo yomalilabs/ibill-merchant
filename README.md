@@ -1,17 +1,7 @@
-# api.ibill.com
-iBill Payment API
+# Merchant Package for iBill API
 
-Composer
-PHP Unit
-index.php routing
+## Checkout Create
+To initialize the session and fetch the hosted page url where the user will be redirected to.
 
-/session/create
- - validate private key
- - if key linked to a business
- - if required params passed in
- - return unique token linked to the checkout
-
-/hosted/checkout/validate
-
-
-/hosted/checkout/payment
+## Tests
+OK (2 tests, 4 assertions)

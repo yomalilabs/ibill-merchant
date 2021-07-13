@@ -26,7 +26,6 @@ class IBillClient
      */
     public function createCheckout(Checkout $checkout)
     {
-        $api = new CheckoutApi($this->config);
-        return $api->createCheckout($checkout);
+        return (new CheckoutApi($this->config))->createCheckout($checkout);
     }
 }
