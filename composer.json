@@ -1,0 +1,44 @@
+{
+    "name": "yomali/ibill-merchant",
+    "type": "project",
+    "description": "Merchant API for iBill.",
+    "keywords": ["Yomali", "iBill", "Merchant"],
+    "license": "iBill",
+    "require": {
+        "php": "^7.3",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+    },
+    "autoload": {
+        "psr-4": {
+            "IBill\\": "src/"
+        },
+        "classmap": [
+
+        ],
+        "files": [
+
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+
+        ]
+    }
+}
