@@ -20,4 +20,13 @@ class HostedCheckout
             $this->cancel_url = $options['cancel_url'];
         }
     }
+
+    public function toArray()
+    {
+        return [
+            'amount' => $this->amount,
+            'success_url' => $this->success_url,
+            'cancel_url' => $this->cancel_url,
+        ];
+    }
 }

@@ -5,6 +5,7 @@ namespace Tests\Feature\Requests;
 use IBill\Exceptions\ApiException;
 use IBill\IBillClient;
 use IBill\Models\HostedCheckout;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Tests\TestCase;
 
 class HostedCheckoutRequest extends TestCase
@@ -20,13 +21,10 @@ class HostedCheckoutRequest extends TestCase
             $checkout = new HostedCheckout(['amount' => 1000]);
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
+            // var_dump($e->error);
+            // die('');
         }
 
-        // if ($response->isError()) {
-
-        // }
-
-        // var_dump($response);
         $this->assertEquals(1, $response->success);
         $this->assertNull($response->error);
         $this->assertNotNull($response->data->url);

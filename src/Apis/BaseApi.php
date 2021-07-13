@@ -2,6 +2,8 @@
 
 namespace IBill\Apis;
 
+use GuzzleHttp\Client;
+use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\Models\ApiConfig;
 use Psr\Http\Message\ResponseInterface;
@@ -22,6 +24,35 @@ class BaseApi
     }
 
     /**
+     * Post the body to the given url
+     *
+     * @param string $url
+     * @param [type] $body
+     */
+    protected function post(string $url, $body)
+    {
+        $client = new Client();
+        $headers = [
+            'user-agent'    => Config::USER_AGENT,
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json',
+            'iBill-Version' => $this->config->iBillVersion,
+            'Authorization' => sprintf('Bearer %1$s', $this->config->accessToken)
+        ];
+
+        $response = $client->post($url, [
+            'json' => $body->toArray(),
+            'headers' => $headers
+        ]);
+
+        if ($this->isValidResponse($response)) {
+            return $this->formatResponse($response);
+        }
+
+        throw new ApiException("Whoops! Something went wrong.");
+    }
+
+    /**
      * Is the response valid?
      */
     protected function isValidResponse(ResponseInterface $response): bool
@@ -30,7 +61,7 @@ class BaseApi
     }
 
     /**
-     * Format the resposne
+     * Format the response
      *
      * @param ResponseInterface $response
      */
@@ -38,11 +69,13 @@ class BaseApi
     {
         if ($response->getBody() && $response->getBody()->__toString()) {
             $data = json_decode($response->getBody()->__toString());
-            if ((int) $data->success === 1) {
+            if ($data && isset($data->success) && (int) $data->success === 1) {
                 return $data;
             }
 
-            throw new ApiException($data->error->message);
+            if ($data && isset($data->error)) {
+                throw new ApiException($data->error->message);
+            }
         }
 
         throw new ApiException("Whoops! Something went wrong.");
