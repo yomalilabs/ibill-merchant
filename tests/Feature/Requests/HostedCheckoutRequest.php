@@ -4,10 +4,10 @@ namespace Tests\Feature\Requests;
 
 use IBill\Exceptions\ApiException;
 use IBill\IBillClient;
-use IBill\Models\Checkout;
+use IBill\Models\HostedCheckout;
 use Tests\TestCase;
 
-class CreateCheckoutRequest extends TestCase
+class HostedCheckoutRequest extends TestCase
 {
     /** @test */
     public function create_checkout()
@@ -17,8 +17,8 @@ class CreateCheckoutRequest extends TestCase
         ]);
 
         try {
-            $checkout = new Checkout(['amount' => 1000]);
-            $response = $client->createCheckout($checkout);
+            $checkout = new HostedCheckout(['amount' => 1000]);
+            $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
         }
 
@@ -40,8 +40,8 @@ class CreateCheckoutRequest extends TestCase
         ]);
 
         try {
-            $checkout = new Checkout(['amount' => 1000]);
-            $response = $client->createCheckout($checkout);
+            $checkout = new HostedCheckout(['amount' => 1000]);
+            $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
             $this->assertNotNull($e->error);
         }

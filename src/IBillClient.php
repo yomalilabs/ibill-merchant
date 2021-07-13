@@ -2,9 +2,9 @@
 
 namespace IBill;
 
-use IBill\Apis\CheckoutApi;
+use IBill\Apis\HostedCheckoutApi;
 use IBill\Models\ApiConfig;
-use IBill\Models\Checkout;
+use IBill\Models\HostedCheckout;
 
 /**
  * iBill client class
@@ -24,8 +24,8 @@ class IBillClient
     /**
      * Returns Checkout Api
      */
-    public function createCheckout(Checkout $checkout)
+    public function createHostedCheckout(HostedCheckout $checkout)
     {
-        return (new CheckoutApi($this->config))->createCheckout($checkout);
+        return (new HostedCheckoutApi($this->config))->create($checkout);
     }
 }

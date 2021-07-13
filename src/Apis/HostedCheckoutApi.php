@@ -4,13 +4,13 @@ namespace IBill\Apis;
 
 use IBill\Config;
 use IBill\Exceptions\ApiException;
-use IBill\Models\Checkout;
+use IBill\Models\HostedCheckout;
 
-class CheckoutApi extends BaseApi
+class HostedCheckoutApi extends BaseApi
 {
-    public function createCheckout(Checkout $body)
+    public function create(HostedCheckout $body)
     {
-        $url = $this->config->baseUrl . '/checkout/create';
+        $url = $this->config->baseUrl . '/hosted/checkout/create';
 
         $client = new \GuzzleHttp\Client();
         $headers = [
