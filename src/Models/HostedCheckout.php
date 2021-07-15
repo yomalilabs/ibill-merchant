@@ -5,11 +5,15 @@ namespace IBill\Models;
 class HostedCheckout
 {
     public $amount;
+    public $reference;
     public $cancel_url;
     public $success_url;
 
     public function __construct(array $options = null)
     {
+        if (isset($options['reference'])) {
+            $this->reference = $options['reference'];
+        }
         if (isset($options['amount'])) {
             $this->amount = $options['amount'];
         }
@@ -25,6 +29,7 @@ class HostedCheckout
     {
         return [
             'amount' => $this->amount,
+            'reference' => $this->reference,
             'success_url' => $this->success_url,
             'cancel_url' => $this->cancel_url,
         ];

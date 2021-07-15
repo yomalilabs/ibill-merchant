@@ -29,6 +29,12 @@ class ApiConfig
             $this->environment = $configOptions['environment'];
         }
 
-        // TODO: if environment == sandbox = update the url
+        if ($this->environment === 'sandbox') {
+            $this->baseUrl = Config::API_URL_SANDBOX;
+        }
+
+        if ($this->environment === 'production') {
+            $this->baseUrl = Config::API_URL;
+        }
     }
 }

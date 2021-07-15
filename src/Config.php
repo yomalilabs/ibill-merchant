@@ -15,8 +15,8 @@ class Config
 
     public const ENVIRONMENT = 'production';
 
-    public const API_URL = 'http://api.ibill.test';
-    // public const API_URL = 'https://admin2.ibill.com/api/ibill';
+    public const API_URL_SANDBOX = 'http://api.ibill.test';
+    public const API_URL = 'https://buygoods.com/api/ibill/public';
 
     public const IBILL_VERSION = '2021-07-13';
 

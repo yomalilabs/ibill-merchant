@@ -8,13 +8,14 @@ use IBill\Models\HostedCheckout;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Tests\TestCase;
 
-class HostedCheckoutRequest extends TestCase
+class HostedCheckoutRequestTest extends TestCase
 {
     /** @test */
     public function create_checkout()
     {
         $client = new IBillClient([
-            'accessToken' => 'access-token'
+            // 'environment' => 'sandbox',
+            'accessToken' => 'access-token',
         ]);
 
         try {
