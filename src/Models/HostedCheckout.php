@@ -2,7 +2,7 @@
 
 namespace IBill\Models;
 
-class HostedCheckout
+class HostedCheckout extends Model
 {
     public $amount;
     public $reference;

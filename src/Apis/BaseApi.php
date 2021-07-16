@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\Models\ApiConfig;
+use IBill\Models\Model;
 use Psr\Http\Message\ResponseInterface;
 
 class BaseApi
@@ -29,7 +30,7 @@ class BaseApi
      * @param string $url
      * @param [type] $body
      */
-    protected function post(string $url, $body)
+    protected function post(string $url, Model $body)
     {
         $client = new Client();
         $headers = [
