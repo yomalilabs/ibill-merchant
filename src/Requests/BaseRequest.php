@@ -41,8 +41,7 @@ class BaseRequest
             'Authorization' => sprintf('Bearer %1$s', $this->config->accessToken)
         ];
 
-        echo "URL: {$url}" . "\r\n";
-        var_dump($body->toArray());
+        echo "\r\n" . "URL: {$url}" . "\r\n";
 
         $response = $client->post($url, [
             'json' => $body->toArray(),
@@ -79,14 +78,13 @@ class BaseRequest
                 return $data;
             }
 
-            var_dump("formatResponse - FAILING");
+            var_dump("ERROR: formatResponse - formatResponse");
             var_dump($response->getBody()->__toString());
 
             if ($data && isset($data->error)) {
-                throw new ApiException($data->error->message);
+                throw new ApiException($data->error);
             }
         }
-
 
         throw new ApiException("Whoops! Something went wrong.");
     }

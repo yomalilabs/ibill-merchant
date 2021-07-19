@@ -16,8 +16,12 @@ class HostedCheckoutResponse extends Response
     {
         parent::__construct($response);
 
-        if (isset($response->data->url)) {
-            $this->url = $response->data->url;
+        if (isset($response->url)) {
+            $this->url = $response->url;
+        }
+
+        if (isset($response->amount)) {
+            $this->amount = $response->amount;
         }
     }
 }

@@ -21,13 +21,12 @@ class HostedCheckoutRequestTest extends TestCase
             $checkout = new HostedCheckout(['amount' => 1000]);
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
-            // var_dump($e->error);
-            // die('');
         }
 
         $this->assertEquals(1, $response->success);
         $this->assertNull($response->error);
         $this->assertNotNull($response->url);
+        $this->assertEquals(5, strpos($response->url, '://checkout.ibill.com?token='));
     }
 
     /** @test */
