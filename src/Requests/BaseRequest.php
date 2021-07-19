@@ -1,6 +1,6 @@
 <?php
 
-namespace IBill\Apis;
+namespace IBill\Requests;
 
 use GuzzleHttp\Client;
 use IBill\Config;
@@ -9,7 +9,7 @@ use IBill\Models\ApiConfig;
 use IBill\Models\Model;
 use Psr\Http\Message\ResponseInterface;
 
-class BaseApi
+class BaseRequest
 {
     /**
      * @var ApiConfig

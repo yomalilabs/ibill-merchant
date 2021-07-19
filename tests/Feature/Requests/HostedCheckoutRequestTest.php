@@ -27,7 +27,7 @@ class HostedCheckoutRequestTest extends TestCase
 
         $this->assertEquals(1, $response->success);
         $this->assertNull($response->error);
-        $this->assertNotNull($response->data->url);
+        $this->assertNotNull($response->url);
     }
 
     /** @test */

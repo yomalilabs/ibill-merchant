@@ -1,13 +1,13 @@
 <?php
 
-namespace IBill\Apis;
+namespace IBill\Requests;
 
 use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\Models\HostedCheckout;
 use IBill\Models\ValidatePayment;
 
-class ValidatePaymentApi extends BaseApi
+class ValidatePaymentRequest extends BaseRequest
 {
     /**
      * Create a hosted checkout session

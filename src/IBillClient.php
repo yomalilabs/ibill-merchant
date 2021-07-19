@@ -2,11 +2,12 @@
 
 namespace IBill;
 
-use IBill\Apis\HostedCheckoutApi;
-use IBill\Apis\ValidatePaymentApi;
+use IBill\Requests\HostedCheckoutRequest;
+use IBill\Requests\ValidatePaymentRequest;
 use IBill\Models\ApiConfig;
 use IBill\Models\HostedCheckout;
 use IBill\Models\ValidatePayment;
+use IBill\Responses\HostedCheckoutResponse;
 
 /**
  * iBill client class
@@ -24,18 +25,21 @@ class IBillClient
     }
 
     /**
-     * Returns Checkout Api
+     * Do a request to create a hosted checkout session
+     *
+     * @param HostedCheckout $model
+     * @return HostedCheckoutResponse
      */
-    public function createHostedCheckout(HostedCheckout $model)
+    public function createHostedCheckout(HostedCheckout $model): HostedCheckoutResponse
     {
-        return (new HostedCheckoutApi($this->config))->create($model);
+        return (new HostedCheckoutRequest($this->config))->create($model);
     }
 
     /**
-     * Returns Checkout Api
+     * Do a request to validate the payment
      */
     public function validatePayment(ValidatePayment $model)
     {
-        return (new ValidatePaymentApi($this->config))->validate($model);
+        return (new ValidatePaymentRequest($this->config))->validate($model);
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace IBill\Apis;
+namespace IBill\Requests;
 
 use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\Models\HostedCheckout;
+use IBill\Responses\HostedCheckoutResponse;
 
-class HostedCheckoutApi extends BaseApi
+class HostedCheckoutRequest extends BaseRequest
 {
     /**
      * Create a hosted checkout session
@@ -17,6 +18,8 @@ class HostedCheckoutApi extends BaseApi
     {
         $url = $this->config->baseUrl . '/hosted/checkout/create';
 
-        return $this->post($url, $body);
+        $response = $this->post($url, $body);
+
+        return new HostedCheckoutResponse($response);
     }
 }

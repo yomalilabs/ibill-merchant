@@ -29,7 +29,7 @@ try {
 
 var_dump($response);
 
-$link = $response->data->url;
+$link = $response->url;
 ?>
 
 <a href="<?= $link ?>">LINK TO THE CHECKOUT</a>

@@ -7,7 +7,10 @@ require '../vendor/autoload.php';
 
 try {
     $client = new IBillClient([
-        'accessToken' => 'access-token'
+        'accessToken' => 'access-token',
+        'reference' => '123456789',
+        'cancel_url' => 'http://merchant.ibill.test/dev.php',
+        'success_url' => 'http://merchant.ibill.test/success.php'
     ]);
 
     $checkout = new HostedCheckout(['amount' => 1000]);
