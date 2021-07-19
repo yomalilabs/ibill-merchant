@@ -5,7 +5,6 @@ namespace Tests\Feature\Requests;
 use IBill\Exceptions\ApiException;
 use IBill\IBillClient;
 use IBill\Models\HostedCheckout;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Tests\TestCase;
 
 class HostedCheckoutRequestTest extends TestCase
