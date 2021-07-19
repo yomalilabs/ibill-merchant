@@ -6,4 +6,4 @@ The response will include an url to redirect the client to that will be used to 
 On success the client will be redirected back to the specified success url to validate the payment
 
 ## Tests
-OK (14 tests, 17 assertions)
+OK (18 tests, 21 assertions)
