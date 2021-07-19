@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use IBill\Config;
 use IBill\IBillClient;
 use PHPUnit\Framework\TestCase;

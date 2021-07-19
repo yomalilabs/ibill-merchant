@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Models;
+
 use IBill\Config;
 use IBill\IBillClient;
 use IBill\Models\ApiConfig;

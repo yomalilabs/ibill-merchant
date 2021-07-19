@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Exceptions;
+
 use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\IBillClient;
