@@ -26,6 +26,11 @@ class IBillClient
         $this->config = new ApiConfig($configOptions);
     }
 
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
     /**
      * Do a request to create a hosted checkout session
      *
