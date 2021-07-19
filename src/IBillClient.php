@@ -6,8 +6,10 @@ use IBill\Requests\HostedCheckoutRequest;
 use IBill\Requests\ValidatePaymentRequest;
 use IBill\Models\ApiConfig;
 use IBill\Models\HostedCheckout;
-use IBill\Models\ValidatePayment;
+use IBill\Models\ValidateHostedCheckout;
+use IBill\Requests\ValidateHostedCheckoutRequest;
 use IBill\Responses\HostedCheckoutResponse;
+use IBill\Responses\ValidateHostedCheckoutResponse;
 
 /**
  * iBill client class
@@ -38,8 +40,8 @@ class IBillClient
     /**
      * Do a request to validate the payment
      */
-    public function validatePayment(ValidatePayment $model)
+    public function validateHostedCheckout(ValidateHostedCheckout $model): ValidateHostedCheckoutResponse
     {
-        return (new ValidatePaymentRequest($this->config))->validate($model);
+        return (new ValidateHostedCheckoutRequest($this->config))->validate($model);
     }
 }

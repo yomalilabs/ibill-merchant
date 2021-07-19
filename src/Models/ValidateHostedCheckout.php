@@ -2,7 +2,7 @@
 
 namespace IBill\Models;
 
-class ValidatePayment extends Model
+class ValidateHostedCheckout extends Model
 {
     public $payment_id;
 

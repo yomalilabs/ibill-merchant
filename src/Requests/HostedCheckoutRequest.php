@@ -14,7 +14,7 @@ class HostedCheckoutRequest extends BaseRequest
      *
      * @param HostedCheckout $body
      */
-    public function create(HostedCheckout $body)
+    public function create(HostedCheckout $body): HostedCheckoutResponse
     {
         $url = $this->config->baseUrl . '/hosted/checkout/create';
 

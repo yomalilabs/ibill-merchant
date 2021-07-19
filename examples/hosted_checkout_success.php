@@ -2,7 +2,7 @@
 
 use IBill\Exceptions\ApiException;
 use IBill\IBillClient;
-use IBill\Models\ValidatePayment;
+use IBill\Models\ValidateHostedCheckout;
 
 require '../vendor/autoload.php';
 
@@ -22,10 +22,10 @@ try {
         'accessToken' => 'access-token'
     ]);
 
-    $validatePayment = new ValidatePayment([
+    $validatePayment = new ValidateHostedCheckout([
         'payment_id' => $paymentId,
     ]);
-    $response = $client->validatePayment($validatePayment);
+    $response = $client->validateHostedCheckout($validatePayment);
 } catch (ApiException $e) {
     var_dump("ERRORRRRRRRR");
     var_dump($e->error);
