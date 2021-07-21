@@ -2,13 +2,15 @@
 
 namespace IBill\Models;
 
+use IBill\Exceptions\ApiException;
+
 class HostedCheckout extends Model
 {
-    public $amount;
-    public $reference;
-    public $cancel_url;
-    public $success_url;
-    public $products;
+    private $amount;
+    private $reference;
+    private $cancel_url;
+    private $success_url;
+    private $products;
 
     public function __construct(array $options = null)
     {
@@ -25,6 +27,21 @@ class HostedCheckout extends Model
             $this->cancel_url = $options['cancel_url'];
         }
         if (isset($options['products'])) {
+            // validate if its an array
+            if (!is_array($options['products'])) {
+                throw new ApiException("The products must be an array.");
+            }
+            // validate the array item if its instance of Product
+            foreach ($options['products'] as $product) {
+                if (!($product instanceof Product)) {
+                    throw new ApiException("The product must be an instance of " . Product::class);
+                }
+
+                // validate if the codename was added
+                if (is_null($product->toArray()['codename'])) {
+                    throw new ApiException("The codename is required when sending your products.");
+                }
+            }
             $this->products = $options['products'];
         }
     }

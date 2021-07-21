@@ -9,10 +9,12 @@ use Exception;
  */
 class ApiException extends Exception
 {
-    public $error = '';
+    public $error;
+    public $message;
 
-    public function __construct(string $error = '')
+    public function __construct(string $message = '')
     {
-        $this->error = $error;
+        $this->error = $message;
+        $this->message = $message;
     }
 }
