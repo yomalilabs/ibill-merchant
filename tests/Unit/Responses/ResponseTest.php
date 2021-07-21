@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Responses;
 
 use IBill\Responses\Response;
 use PHPUnit\Framework\TestCase;

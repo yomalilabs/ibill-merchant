@@ -19,7 +19,8 @@ print_r($_GET);
 
 try {
     $client = new IBillClient([
-        'accessToken' => 'access-token'
+        'accountId' => 1234,
+        'accessToken' => 'access-token' // private key (server) + public key (js)
     ]);
 
     $validatePayment = new ValidateHostedCheckout([
