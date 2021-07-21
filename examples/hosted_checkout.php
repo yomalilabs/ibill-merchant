@@ -2,6 +2,7 @@
 
 use IBill\IBillClient;
 use IBill\Models\HostedCheckout;
+use IBill\Models\Product;
 
 require '../vendor/autoload.php';
 

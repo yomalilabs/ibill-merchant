@@ -8,6 +8,7 @@ class HostedCheckout extends Model
     public $reference;
     public $cancel_url;
     public $success_url;
+    public $products;
 
     public function __construct(array $options = null)
     {
@@ -23,6 +24,9 @@ class HostedCheckout extends Model
         if (isset($options['cancel_url'])) {
             $this->cancel_url = $options['cancel_url'];
         }
+        if (isset($options['products'])) {
+            $this->products = $options['products'];
+        }
     }
 
     public function toArray()
@@ -32,6 +36,7 @@ class HostedCheckout extends Model
             'reference' => $this->reference,
             'success_url' => $this->success_url,
             'cancel_url' => $this->cancel_url,
+            'products' => $this->products,
         ];
     }
 }

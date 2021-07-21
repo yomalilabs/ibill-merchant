@@ -42,6 +42,7 @@ class BaseRequest
         ];
 
         echo "\r\n" . "URL: {$url}" . "\r\n";
+        // print_r($body->toArray());
 
         $response = $client->post($url, [
             'json' => $body->toArray(),
