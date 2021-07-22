@@ -58,18 +58,18 @@ class HostedCheckoutTest extends TestCase
             'products' => [
                 new Product([
                     'quantity' => 1,
-                    'codename' => 'product-1',
+                    'codename' => 'product1',
                 ]),
                 new Product([
                     'quantity' => 2,
-                    'codename' => 'product-2',
+                    'codename' => 'product2',
                 ]),
             ],
         ]);
 
         $this->assertEquals(true,  is_array($model->toArray()['products']));
-        $this->assertEquals('product-1', $model->toArray()['products'][0]->codename);
-        $this->assertEquals('product-2', $model->toArray()['products'][1]->codename);
+        $this->assertEquals('product1', $model->toArray()['products'][0]->codename);
+        $this->assertEquals('product2', $model->toArray()['products'][1]->codename);
     }
 
     /** @test */

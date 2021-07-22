@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use IBill\Config;
+use IBill\Exceptions\ApiException;
 use IBill\Models\ApiConfig;
 use IBill\Models\Product;
 use PHPUnit\Framework\TestCase;
@@ -12,8 +13,8 @@ class ProductTest extends TestCase
     /** @test */
     public function can_set_codename()
     {
-        $config = new Product(['codename' => 'product-1']);
-        $this->assertEquals('product-1', $config->codename);
+        $config = new Product(['codename' => 'product1']);
+        $this->assertEquals('product1', $config->codename);
     }
 
     /** @test */
@@ -31,5 +32,36 @@ class ProductTest extends TestCase
 
         $config = new Product(['quantity' => 2]);
         $this->assertEquals(2, $config->quantity);
+    }
+
+    /** @test */
+    public function validate_product_codename()
+    {
+        try {
+            $model = new Product([
+                'codename' => 'product-1',
+            ]);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->error);
+        }
+        $this->assertFalse(isset($model));
+
+        try {
+            $model = new Product([
+                'codename' => '-product1',
+            ]);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->error);
+        }
+        $this->assertFalse(isset($model));
+
+        try {
+            $model = new Product([
+                'codename' => 'product1-',
+            ]);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->error);
+        }
+        $this->assertFalse(isset($model));
     }
 }

@@ -20,7 +20,20 @@ class HostedCheckoutRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new HostedCheckout(['amount' => 1000, 'reference' => 123456789]);
+            $checkout = new HostedCheckout([
+                'amount' => 1000,
+                'reference' => 123456789,
+                'products' => [
+                    new Product([
+                        'quantity' => 1,
+                        'codename' => 'product1',
+                    ]),
+                    new Product([
+                        'quantity' => 2,
+                        'codename' => 'product2',
+                    ]),
+                ],
+            ]);
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
             die($e->error);
