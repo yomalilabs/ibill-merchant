@@ -11,6 +11,8 @@ class HostedCheckout extends Model
     private $cancel_url;
     private $success_url;
     private $products;
+    private $tax_amount;
+    private $shipping_amount;
 
     public function __construct(array $options = null)
     {
@@ -25,6 +27,12 @@ class HostedCheckout extends Model
         }
         if (isset($options['cancel_url'])) {
             $this->cancel_url = $options['cancel_url'];
+        }
+        if (isset($options['shipping_amount'])) {
+            $this->shipping_amount = $options['shipping_amount'];
+        }
+        if (isset($options['tax_amount'])) {
+            $this->tax_amount = $options['tax_amount'];
         }
         if (isset($options['products'])) {
             // validate if its an array
@@ -54,6 +62,8 @@ class HostedCheckout extends Model
             'success_url' => $this->success_url,
             'cancel_url' => $this->cancel_url,
             'products' => $this->products,
+            'tax_amount' => $this->tax_amount,
+            'shipping_amount' => $this->shipping_amount,
         ];
     }
 }

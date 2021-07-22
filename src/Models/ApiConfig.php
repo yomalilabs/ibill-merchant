@@ -30,7 +30,6 @@ class ApiConfig
             throw new ApiException("Please provide the access_token attribute.");
         }
 
-
         if (isset($configOptions['account_id'])) {
             $this->accountId = $configOptions['account_id'];
         }

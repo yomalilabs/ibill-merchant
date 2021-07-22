@@ -38,6 +38,20 @@ class HostedCheckoutTest extends TestCase
     }
 
     /** @test */
+    public function can_set_shipping_amount()
+    {
+        $model = new HostedCheckout(['shipping_amount' => 500]);
+        $this->assertEquals(500, $model->toArray()['shipping_amount']);
+    }
+
+    /** @test */
+    public function can_set_tax_amount()
+    {
+        $model = new HostedCheckout(['tax_amount' => 500]);
+        $this->assertEquals(500, $model->toArray()['tax_amount']);
+    }
+
+    /** @test */
     public function can_set_products()
     {
         $model = new HostedCheckout([

@@ -14,7 +14,8 @@ class ValidateHostedCheckoutRequestTest extends TestCase
     {
         $client = new IBillClient([
             // 'environment' => 'sandbox',
-            'accessToken' => 'access-token',
+            'account_id' => 1234,
+            'access_token' => 'access-token',
         ]);
 
         try {
