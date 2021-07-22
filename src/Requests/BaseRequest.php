@@ -37,8 +37,10 @@ class BaseRequest
             'user-agent'    => Config::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json',
-            'iBill-Version' => $this->config->iBillVersion,
-            'Authorization' => sprintf('Bearer %1$s', $this->config->accessToken)
+            'iBill-Version' => Config::IBILL_VERSION,
+            'iBill-Account-Id' => $this->config->getAccountId(),
+            'iBill-Environment' => $this->config->getEnvironment(),
+            'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
         echo "\r\n" . "URL: {$url}" . "\r\n";

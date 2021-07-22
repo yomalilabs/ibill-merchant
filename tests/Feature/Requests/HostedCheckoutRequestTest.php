@@ -15,13 +15,14 @@ class HostedCheckoutRequestTest extends TestCase
     {
         $client = new IBillClient([
             // 'environment' => 'sandbox',
-            'accessToken' => 'access-token',
+            'access_token' => 'access-token',
         ]);
 
         try {
             $checkout = new HostedCheckout(['amount' => 1000]);
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
+            die($e->error);
         }
 
         $this->assertEquals(1, $response->success);
@@ -34,7 +35,7 @@ class HostedCheckoutRequestTest extends TestCase
     public function validate_access_token()
     {
         $client = new IBillClient([
-            'accessToken' => 'faulty-token'
+            'access_token' => 'faulty-token'
         ]);
 
         try {

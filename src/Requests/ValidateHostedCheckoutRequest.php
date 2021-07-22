@@ -15,7 +15,7 @@ class ValidateHostedCheckoutRequest extends BaseRequest
      */
     public function validate(ValidateHostedCheckout $body): ValidateHostedCheckoutResponse
     {
-        $url = $this->config->baseUrl . '/hosted/checkout/validate';
+        $url = $this->config->getBaseUrl() . '/hosted/checkout/validate';
 
         $response = $this->post($url, $body);
 

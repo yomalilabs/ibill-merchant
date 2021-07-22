@@ -9,8 +9,6 @@ class Config
 {
     public const TIMEOUT = 60;
 
-    public const ACCESS_TOKEN = 'Merchant Access Token - Replace';
-
     public const ADDITIONAL_HEADERS = [];
 
     public const ENVIRONMENT = 'production';
