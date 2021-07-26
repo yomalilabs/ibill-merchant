@@ -62,26 +62,24 @@ class HostedCheckoutRequestTest extends TestCase
     }
 
     /** @test */
-    public function create_checkout_with_products()
+    public function create_checkout_with_products_not_added_in_ibill()
     {
         $client = new IBillClient([
-            // 'environment' => 'sandbox',
             'account_id' => 6509,
             'access_token' => 'access-token',
         ]);
 
         try {
             $checkout = new HostedCheckout([
-                'amount' => 1000,
                 'reference' => 123456789,
                 'products' => [
                     new Product([
                         'quantity' => 1,
-                        'codename' => 'product1',
+                        'amount' => 10000,
                     ]),
                     new Product([
-                        'quantity' => 2,
-                        'codename' => 'product1',
+                        'quantity' => 1,
+                        'amount' => 20000,
                     ]),
                 ],
             ]);
