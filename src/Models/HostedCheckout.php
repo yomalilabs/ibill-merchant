@@ -44,24 +44,23 @@ class HostedCheckout extends Model
                 if (!($product instanceof Product)) {
                     throw new ApiException("The product must be an instance of " . Product::class);
                 }
-
-                // validate if the codename was added
-                if (is_null($product->toArray()['codename'])) {
-                    throw new ApiException("The codename is required when sending your products.");
-                }
             }
             $this->products = $options['products'];
         }
     }
 
-    public function toArray()
+    public function toArray(): array
     {
+        $products = [];
+        foreach ($this->products as $product) {
+            $products[] = $product->toArray();
+        }
         return [
             'amount' => $this->amount,
             'reference' => $this->reference,
             'success_url' => $this->success_url,
             'cancel_url' => $this->cancel_url,
-            'products' => $this->products,
+            'products' => $products,
             'tax_amount' => $this->tax_amount,
             'shipping_amount' => $this->shipping_amount,
         ];

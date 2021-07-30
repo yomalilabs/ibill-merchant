@@ -3,6 +3,7 @@
 namespace IBill\Models;
 
 use IBill\Exceptions\ApiException;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class Product extends Model
 {
@@ -46,7 +47,7 @@ class Product extends Model
         }
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'name' => $this->name,

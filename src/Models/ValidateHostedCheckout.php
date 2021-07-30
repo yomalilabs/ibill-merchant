@@ -13,7 +13,7 @@ class ValidateHostedCheckout extends Model
         }
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'payment_id' => $this->payment_id,

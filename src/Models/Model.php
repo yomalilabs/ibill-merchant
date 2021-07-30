@@ -4,7 +4,7 @@ namespace IBill\Models;
 
 class Model
 {
-    public function toArray()
+    public function toArray(): array
     {
         return [];
     }
