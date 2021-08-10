@@ -8,7 +8,7 @@ use stdClass;
 class PaymentAuthorizeResponse extends Response
 {
     // the unique reference id
-    public $uuid = 0;
+    public $uuid = '';
 
     public function __construct(stdClass $response = null)
     {
