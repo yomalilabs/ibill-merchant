@@ -8,8 +8,10 @@ use IBill\Models\ApiConfig;
 use IBill\Models\HostedCheckout;
 use IBill\Models\PaymentAuthorize;
 use IBill\Models\ValidateHostedCheckout;
+use IBill\Requests\PaymentAuthorizeRequest;
 use IBill\Requests\ValidateHostedCheckoutRequest;
 use IBill\Responses\HostedCheckoutResponse;
+use IBill\Responses\PaymentAuthorizeResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
 
 /**
@@ -54,8 +56,8 @@ class IBill
     /**
      * Do a payment authorize request
      */
-    public function paymentAuthorize(PaymentAuthorize $model): ValidateHostedCheckoutResponse
+    public function paymentAuthorize(PaymentAuthorize $model): PaymentAuthorizeResponse
     {
-        return (new ValidateHostedCheckoutRequest($this->config))->validate($model);
+        return (new PaymentAuthorizeRequest($this->config))->request($model);
     }
 }
