@@ -3,7 +3,7 @@
 namespace Tests\Feature\Requests;
 
 use IBill\Exceptions\ApiException;
-use IBill\IBillClient;
+use IBill\IBill;
 use IBill\Models\HostedCheckout;
 use IBill\Models\Product;
 use Tests\TestCase;
@@ -13,7 +13,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function create_checkout()
     {
-        $client = new IBillClient([
+        $client = new IBill([
             // 'environment' => 'sandbox',
             'account_id' => 6509,
             'access_token' => 'access-token',
@@ -48,7 +48,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function validate_access_token()
     {
-        $client = new IBillClient([
+        $client = new IBill([
             'account_id' => 6509,
             'access_token' => 'faulty-token'
         ]);
@@ -64,7 +64,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function create_checkout_with_products_not_added_in_ibill()
     {
-        $client = new IBillClient([
+        $client = new IBill([
             'account_id' => 6509,
             'access_token' => 'access-token',
         ]);

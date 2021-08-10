@@ -3,7 +3,7 @@
 namespace Tests\Feature\Requests;
 
 use IBill\Exceptions\ApiException;
-use IBill\IBillClient;
+use IBill\IBill;
 use IBill\Models\ValidateHostedCheckout;
 use Tests\TestCase;
 
@@ -12,7 +12,7 @@ class ValidateHostedCheckoutRequestTest extends TestCase
     /** @test */
     public function validate_payment_id()
     {
-        $client = new IBillClient([
+        $client = new IBill([
             // 'environment' => 'sandbox',
             'account_id' => 1234,
             'access_token' => 'access-token',

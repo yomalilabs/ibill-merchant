@@ -1,7 +1,7 @@
 <?php
 
 use IBill\Exceptions\ApiException;
-use IBill\IBillClient;
+use IBill\IBill;
 use IBill\Models\ValidateHostedCheckout;
 
 require '../vendor/autoload.php';
@@ -18,7 +18,7 @@ print_r($_GET);
 
 
 try {
-    $client = new IBillClient([
+    $client = new IBill([
         'accountId' => 1234,
         'accessToken' => 'access-token' // private key (server) + public key (js)
     ]);

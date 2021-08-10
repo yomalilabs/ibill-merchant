@@ -4,7 +4,7 @@ namespace Tests\Unit\Models;
 
 use IBill\Config;
 use IBill\Exceptions\ApiException;
-use IBill\IBillClient;
+use IBill\IBill;
 use IBill\Models\ApiConfig;
 use PHPUnit\Framework\TestCase;
 

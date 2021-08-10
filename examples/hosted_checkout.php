@@ -1,13 +1,13 @@
 <?php
 
-use IBill\IBillClient;
+use IBill\IBill;
 use IBill\Models\HostedCheckout;
 use IBill\Models\Product;
 
 require '../vendor/autoload.php';
 
 try {
-    $client = new IBillClient([
+    $client = new IBill([
         // 'environment' => 'sandbox',
         'accessToken' => 'access-token',
     ]);

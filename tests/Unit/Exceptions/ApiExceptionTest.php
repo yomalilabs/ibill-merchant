@@ -4,7 +4,7 @@ namespace Tests\Unit\Exceptions;
 
 use IBill\Config;
 use IBill\Exceptions\ApiException;
-use IBill\IBillClient;
+use IBill\IBill;
 use PHPUnit\Framework\TestCase;
 
 class ApiExceptionTest extends TestCase
