@@ -3,22 +3,26 @@
 namespace IBill;
 
 use IBill\Requests\HostedCheckoutRequest;
-use IBill\Requests\ValidatePaymentRequest;
 use IBill\Models\ApiConfig;
 use IBill\Models\AuthorizeAndCapturePayment;
 use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
+use IBill\Models\RefundPayment;
 use IBill\Models\ValidateHostedCheckout;
+use IBill\Models\VoidPayment;
 use IBill\Requests\AuthorizeAndCapturePaymentRequest;
 use IBill\Requests\AuthorizePaymentRequest;
 use IBill\Requests\CaptureAuthorizedPaymentRequest;
+use IBill\Requests\PaymentsRequest;
 use IBill\Requests\ValidateHostedCheckoutRequest;
 use IBill\Responses\AuthorizeAndCapturePaymentResponse;
 use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
+use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
+use IBill\Responses\VoidPaymentResponse;
 
 /**
  * iBill client class
@@ -64,7 +68,7 @@ class IBill
      */
     public function authorizePayment(AuthorizePayment $model): AuthorizePaymentResponse
     {
-        return (new AuthorizePaymentRequest($this->config))->request($model);
+        return (new PaymentsRequest($this->config))->authorize($model);
     }
 
     /**
@@ -72,7 +76,7 @@ class IBill
      */
     public function captureAuthorizedPayment(CaptureAuthorizedPayment $model): CaptureAuthorizedPaymentResponse
     {
-        return (new CaptureAuthorizedPaymentRequest($this->config))->request($model);
+        return (new PaymentsRequest($this->config))->capture($model);
     }
 
     /**
@@ -80,6 +84,22 @@ class IBill
      */
     public function authorizeAndCapturePayment(AuthorizeAndCapturePayment $model): AuthorizeAndCapturePaymentResponse
     {
-        return (new AuthorizeAndCapturePaymentRequest($this->config))->request($model);
+        return (new PaymentsRequest($this->config))->authorizeAndCapture($model);
+    }
+
+    /**
+     * Do a refund payment request
+     */
+    public function refundPayment(RefundPayment $model): RefundPaymentResponse
+    {
+        return (new PaymentsRequest($this->config))->refund($model);
+    }
+
+    /**
+     * Do a void payment request
+     */
+    public function voidPayment(VoidPayment $model): VoidPaymentResponse
+    {
+        return (new PaymentsRequest($this->config))->void($model);
     }
 }
