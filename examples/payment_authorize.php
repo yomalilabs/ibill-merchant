@@ -2,10 +2,9 @@
 
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
-use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
-use IBill\Models\Product;
 
+echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
@@ -16,6 +15,8 @@ try {
     ]);
 
     $model = new AuthorizePayment([
+        // 'purchase_id' => 'the unique id/reference token',
+
         'firstname' => 'Firstname',
         'lastname' => 'Lastname',
         'email' => 'info@example.com',
