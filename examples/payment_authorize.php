@@ -28,7 +28,7 @@ try {
         'card_expiry_month' => 10,
         'card_expiry_year' => 2025,
     ]);
-    $response = $iBill->paymentAuthorize($model);
+    $response = $iBill->authorizePayment($model);
 } catch (ApiException $e) {
     var_dump($e->error);
 }

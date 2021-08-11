@@ -2,28 +2,26 @@
 
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
-use IBill\Models\HostedCheckout;
-use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
-use IBill\Models\Product;
 
 require '../vendor/autoload.php';
+echo "<pre>" . "\r\n";
 
 try {
     $iBill = new IBill([
-        // 'environment' => 'sandbox',
         'account_id' => 6509,
         'access_token' => 'access-token',
     ]);
 
     $model = new CaptureAuthorizedPayment([
         'amount' => 10.25,
-        'authorized_payment_id' => '123456789',
+        'authorized_payment_id' => '123',
     ]);
-    $response = $iBill->paymentAuthorize($model);
+    $response = $iBill->captureAuthorizedPayment($model);
 } catch (ApiException $e) {
+    var_dump("ERROR");
     var_dump($e->error);
 }
 
-echo "<pre>" . "\r\n";
+
 var_dump($response);
