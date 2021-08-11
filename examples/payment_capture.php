@@ -4,6 +4,7 @@ use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
+use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\Product;
 
 require '../vendor/autoload.php';
@@ -15,18 +16,9 @@ try {
         'access_token' => 'access-token',
     ]);
 
-    $model = new AuthorizePayment([
-        'firstname' => 'Firstname',
-        'lastname' => 'Lastname',
-        'email' => 'info@example.com',
-        'address' => '1234 Fake Address',
-        'zip' => 12345,
-
+    $model = new CaptureAuthorizedPayment([
         'amount' => 10.25,
-        'card_number' => 6011111111111117,
-        'card_cvv' => 123,
-        'card_expiry_month' => 10,
-        'card_expiry_year' => 2025,
+        'authorized_payment_id' => '123456789',
     ]);
     $response = $iBill->paymentAuthorize($model);
 } catch (ApiException $e) {

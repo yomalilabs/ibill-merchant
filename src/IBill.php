@@ -6,12 +6,12 @@ use IBill\Requests\HostedCheckoutRequest;
 use IBill\Requests\ValidatePaymentRequest;
 use IBill\Models\ApiConfig;
 use IBill\Models\HostedCheckout;
-use IBill\Models\PaymentAuthorize;
+use IBill\Models\AuthorizePayment;
 use IBill\Models\ValidateHostedCheckout;
-use IBill\Requests\PaymentAuthorizeRequest;
+use IBill\Requests\AuthorizePaymentRequest;
 use IBill\Requests\ValidateHostedCheckoutRequest;
 use IBill\Responses\HostedCheckoutResponse;
-use IBill\Responses\PaymentAuthorizeResponse;
+use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
 
 /**
@@ -56,8 +56,8 @@ class IBill
     /**
      * Do a payment authorize request
      */
-    public function paymentAuthorize(PaymentAuthorize $model): PaymentAuthorizeResponse
+    public function paymentAuthorize(AuthorizePayment $model): AuthorizePaymentResponse
     {
-        return (new PaymentAuthorizeRequest($this->config))->request($model);
+        return (new AuthorizePaymentRequest($this->config))->request($model);
     }
 }

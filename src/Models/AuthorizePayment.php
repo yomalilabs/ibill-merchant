@@ -2,19 +2,19 @@
 
 namespace IBill\Models;
 
-class PaymentAuthorize extends Model
+class AuthorizePayment extends Model
 {
-    public $firstname;
-    public $lastname;
-    public $email;
-    public $address;
-    public $zip;
+    private $firstname;
+    private $lastname;
+    private $email;
+    private $address;
+    private $zip;
 
-    public $amount;
-    public $card_number;
-    public $card_cvv;
-    public $card_expiry_month;
-    public $card_expiry_year;
+    private $amount;
+    private $card_number;
+    private $card_cvv;
+    private $card_expiry_month;
+    private $card_expiry_year;
 
     public function __construct(array $options = null)
     {

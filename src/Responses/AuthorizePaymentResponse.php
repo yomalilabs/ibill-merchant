@@ -5,7 +5,7 @@ namespace IBill\Responses;
 use IBill\Responses\Response;
 use stdClass;
 
-class PaymentAuthorizeResponse extends Response
+class AuthorizePaymentResponse extends Response
 {
     // the unique reference id
     public $uuid = '';

@@ -4,7 +4,7 @@ namespace IBill\Models;
 
 class ValidateHostedCheckout extends Model
 {
-    public $payment_id;
+    private $payment_id;
 
     public function __construct(array $options = null)
     {
