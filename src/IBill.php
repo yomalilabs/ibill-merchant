@@ -5,13 +5,16 @@ namespace IBill;
 use IBill\Requests\HostedCheckoutRequest;
 use IBill\Requests\ValidatePaymentRequest;
 use IBill\Models\ApiConfig;
+use IBill\Models\AuthorizeAndCapturePayment;
 use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\ValidateHostedCheckout;
+use IBill\Requests\AuthorizeAndCapturePaymentRequest;
 use IBill\Requests\AuthorizePaymentRequest;
 use IBill\Requests\CaptureAuthorizedPaymentRequest;
 use IBill\Requests\ValidateHostedCheckoutRequest;
+use IBill\Responses\AuthorizeAndCapturePaymentResponse;
 use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
@@ -70,5 +73,13 @@ class IBill
     public function captureAuthorizedPayment(CaptureAuthorizedPayment $model): CaptureAuthorizedPaymentResponse
     {
         return (new CaptureAuthorizedPaymentRequest($this->config))->request($model);
+    }
+
+    /**
+     * Do a capture authorized payment request
+     */
+    public function authorizeAndCapturePayment(AuthorizeAndCapturePayment $model): AuthorizeAndCapturePaymentResponse
+    {
+        return (new AuthorizeAndCapturePaymentRequest($this->config))->request($model);
     }
 }
