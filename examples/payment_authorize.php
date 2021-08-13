@@ -31,7 +31,10 @@ try {
     ]);
     $response = $iBill->authorizePayment($model);
 } catch (ApiException $e) {
-    var_dump($e->error);
+    var_dump('----');
+    var_dump($e->message);
+    var_dump('----');
+    exit;
 }
 
 echo "<pre>" . "\r\n";

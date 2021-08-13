@@ -2,6 +2,7 @@
 
 namespace IBill\Requests;
 
+use Exception;
 use GuzzleHttp\Client;
 use IBill\Config;
 use IBill\Exceptions\ApiException;
@@ -46,13 +47,28 @@ class BaseRequest
         echo "\r\n" . "URL: {$url}" . "\r\n";
         print_r($body->toArray());
 
-        $response = $client->post($url, [
-            'json' => $body->toArray(),
-            'headers' => $headers
-        ]);
+        try {
+            $response = $client->post($url, [
+                'json' => $body->toArray(),
+                'headers' => $headers
+            ]);
+        } catch (Exception $e) {
+            // var_dump('-----------------------------------');
+            throw new ApiException($e->getMessage());
+            // var_dump($e->getCode());
+            // var_dump($e->getMessage());
+        }
 
+        echo "\r\n" . "\r\n";
         echo "RESPONSE" . "\r\n";
-
+        var_dump("Status Code: " .  $response->getStatusCode());
+        var_dump("getReasonPhrase: " .  $response->getReasonPhrase());
+        var_dump("getProtocolVersion: " .  $response->getProtocolVersion());
+        var_dump("Header - Content Type: " . $response->getHeaders()['Content-Type'][0]);
+        // var_dump($response->getBody());
+        echo "\r\n" . "\r\n";
+        var_dump((string) $response->getBody());
+        echo "\r\n" . "\r\n";
         if ($this->isValidResponse($response)) {
             return $this->formatResponse($response);
         }
@@ -75,14 +91,14 @@ class BaseRequest
      */
     protected function formatResponse(ResponseInterface $response)
     {
-        if ($response->getBody() && $response->getBody()->__toString()) {
-            $data = json_decode($response->getBody()->__toString());
+        if ($response->getBody() && (string) $response->getBody()) {
+            $data = json_decode((string) $response->getBody());
             if ($data && isset($data->success) && (int) $data->success === 1) {
                 return $data;
             }
 
             var_dump("ERROR: formatResponse - formatResponse");
-            var_dump($response->getBody()->__toString());
+            var_dump((string) $response->getBody());
 
             if ($data && isset($data->error)) {
                 throw new ApiException($data->error);

@@ -4,6 +4,7 @@ use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\RefundPayment;
 
+echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
@@ -15,7 +16,7 @@ try {
 
     $model = new RefundPayment([
         'amount' => 10.25,
-        'payment_id' => 'AL79MVU5HPHGL9M',
+        'payment_id' => 'ALWP5LTKHPXFK54',
 
         // 'firstname' => 'Firstname',
         // 'lastname' => 'Lastname',
@@ -30,5 +31,4 @@ try {
     var_dump($e->error);
 }
 
-echo "<pre>" . "\r\n";
 var_dump($response);
