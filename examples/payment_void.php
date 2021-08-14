@@ -5,6 +5,7 @@ use IBill\IBill;
 use IBill\Models\RefundPayment;
 use IBill\Models\VoidPayment;
 
+echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
@@ -16,12 +17,11 @@ try {
 
     $model = new VoidPayment([
         'amount' => 10.25,
-        'payment_id' => 'AL7A6QLTHY79H03',
+        'payment_id' => 'ALWZU1XGHYQLHZV',
     ]);
     $response = $iBill->voidPayment($model);
 } catch (ApiException $e) {
     var_dump($e->error);
 }
 
-echo "<pre>" . "\r\n";
 var_dump($response);
