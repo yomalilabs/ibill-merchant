@@ -61,10 +61,10 @@ class BaseRequest
 
         echo "\r\n" . "\r\n";
         echo "RESPONSE" . "\r\n";
-        var_dump("Status Code: " .  $response->getStatusCode());
-        var_dump("getReasonPhrase: " .  $response->getReasonPhrase());
-        var_dump("getProtocolVersion: " .  $response->getProtocolVersion());
-        var_dump("Header - Content Type: " . $response->getHeaders()['Content-Type'][0]);
+        // var_dump("Status Code: " .  $response->getStatusCode());
+        // var_dump("getReasonPhrase: " .  $response->getReasonPhrase());
+        // var_dump("getProtocolVersion: " .  $response->getProtocolVersion());
+        // var_dump("Header - Content Type: " . $response->getHeaders()['Content-Type'][0]);
         // var_dump($response->getBody());
         echo "\r\n" . "\r\n";
         var_dump((string) $response->getBody());

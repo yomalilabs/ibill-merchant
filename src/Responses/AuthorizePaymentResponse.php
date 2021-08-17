@@ -8,14 +8,14 @@ use stdClass;
 class AuthorizePaymentResponse extends Response
 {
     // the unique reference id
-    public $uuid = '';
+    public $id = '';
 
     public function __construct(stdClass $response = null)
     {
         parent::__construct($response);
 
-        if (isset($response->uuid)) {
-            $this->uuid = $response->uuid;
+        if (isset($response->id)) {
+            $this->id = $response->id;
         }
     }
 }
