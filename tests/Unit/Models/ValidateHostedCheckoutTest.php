@@ -14,6 +14,6 @@ class ValidateHostedCheckoutTest extends TestCase
             'payment_id' => '123456789',
         ]);
 
-        $this->assertEquals('123456789', $config->payment_id);
+        $this->assertEquals('123456789', $config->toArray()['payment_id']);
     }
 }

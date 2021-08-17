@@ -9,97 +9,96 @@ use PHPUnit\Framework\TestCase;
 
 class HostedCheckoutTest extends TestCase
 {
-    /** @test */
-    public function can_set_reference()
+    private function validParams($overrides = [])
     {
-        $model = new HostedCheckout(['reference' => 'reference']);
-        $this->assertEquals('reference', $model->toArray()['reference']);
+        return array_merge([
+            'amount' => 2000,
+            'reference' => '123456789',
+            'cancel_url' => 'http://merchant.ibill.test/cancel',
+            'success_url' => 'http://merchant.ibill.test/success'
+
+        ], $overrides);
     }
 
     /** @test */
-    public function can_set_amount()
+    public function initialize_model()
     {
-        $model = new HostedCheckout(['amount' => 5000]);
-        $this->assertEquals(5000, $model->toArray()['amount']);
+        $model = new HostedCheckout($this->validParams());
+
+        $data = $model->toArray();
+        $this->assertEquals(2000, $data['amount']);
+        $this->assertEquals('123456789', $data['reference']);
+        $this->assertEquals('http://merchant.ibill.test/cancel', $data['cancel_url']);
+        $this->assertEquals('http://merchant.ibill.test/success', $data['success_url']);
     }
 
     /** @test */
-    public function can_set_success_url()
+    public function initialize_model_with_products()
     {
-        $model = new HostedCheckout(['success_url' => 'http://success.com']);
-        $this->assertEquals('http://success.com', $model->toArray()['success_url']);
-    }
+        $params = $this->validParams(
+            [
+                'products' => [
+                    new Product([
+                        'quantity' => 1,
+                        'codename' => 'product1',
+                    ]),
+                    new Product([
+                        'quantity' => 2,
+                        'codename' => 'product2',
+                    ]),
+                ]
+            ],
+        );
+        unset($params['amount']);
+        $model = new HostedCheckout($params);
 
-    /** @test */
-    public function can_set_cancel_url()
-    {
-        $model = new HostedCheckout(['cancel_url' => 'http://cancel.com']);
-        $this->assertEquals('http://cancel.com', $model->toArray()['cancel_url']);
+        $this->assertEquals(true,  is_array($model->toArray()['products']));
+        $this->assertEquals('product1', $model->toArray()['products'][0]['codename']);
+        $this->assertEquals('product2', $model->toArray()['products'][1]['codename']);
     }
 
     /** @test */
     public function can_set_shipping_amount()
     {
-        $model = new HostedCheckout(['shipping_amount' => 500]);
+        $model = new HostedCheckout($this->validParams(['shipping_amount' => 500]));
         $this->assertEquals(500, $model->toArray()['shipping_amount']);
     }
 
     /** @test */
     public function can_set_tax_amount()
     {
-        $model = new HostedCheckout(['tax_amount' => 500]);
+        $model = new HostedCheckout($this->validParams(['tax_amount' => 500]));
         $this->assertEquals(500, $model->toArray()['tax_amount']);
-    }
-
-    /** @test */
-    public function can_set_products()
-    {
-        $model = new HostedCheckout([
-            'products' => [
-                new Product([
-                    'quantity' => 1,
-                    'codename' => 'product1',
-                ]),
-                new Product([
-                    'quantity' => 2,
-                    'codename' => 'product2',
-                ]),
-            ],
-        ]);
-
-        $this->assertEquals(true,  is_array($model->toArray()['products']));
-        $this->assertEquals('product1', $model->toArray()['products'][0]->codename);
-        $this->assertEquals('product2', $model->toArray()['products'][1]->codename);
     }
 
     /** @test */
     public function validate_set_products()
     {
         try {
-            $model = new HostedCheckout(['products' => 'string']);
+            $model = new HostedCheckout($this->validParams(['products' => 'string']));
         } catch (ApiException $error) {
             $this->assertNotNull($error->error);
         }
         $this->assertFalse(isset($model));
 
         try {
-            $model = new HostedCheckout(['products' => 1]);
+            $model = new HostedCheckout($this->validParams(['products' => 1]));
         } catch (ApiException $error) {
             $this->assertNotNull($error->error);
         }
         $this->assertFalse(isset($model));
 
         try {
-            $model = new HostedCheckout(['products' => ['foo', 'bar']]);
+            $model = new HostedCheckout($this->validParams(['products' => ['foo', 'bar']]));
         } catch (ApiException $error) {
             $this->assertNotNull($error->error);
         }
         $this->assertFalse(isset($model));
 
         try {
-            $model = new HostedCheckout(['products' => [
+            $model = new HostedCheckout($this->validParams(['products' => [
                 new Product(),
-            ]]);
+            ]]));
         } catch (ApiException $error) {
             echo "" . $error->error . "\r\n";
             $this->assertNotNull($error->error);

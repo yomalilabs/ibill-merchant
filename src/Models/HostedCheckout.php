@@ -10,7 +10,7 @@ class HostedCheckout extends Model
     private $reference;
     private $cancel_url;
     private $success_url;
-    private $products;
+    private $products = [];
     private $tax_amount;
     private $shipping_amount;
 
