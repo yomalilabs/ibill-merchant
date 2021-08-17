@@ -18,29 +18,37 @@ class AuthorizePayment extends Model
     private $card_expiry_month;
     private $card_expiry_year;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
         // amount must be in cents and bigger than 100
-        if (!isset($options['amount']) || (!is_integer($options['amount']) || $options['amount'] < 100)) {
+        if (!isset($attributes['amount']) || (!is_integer($attributes['amount']) || $attributes['amount'] < 100)) {
             throw new ApiException("The minimum amount is 100 cents.");
         }
 
-        $this->validateExists([
+        $this->validateExists($attributes, [
             'firstname',
-            'lastname'
+            'lastname',
+            'email',
+            'address',
+            'zip',
+            'amount',
+            'card_number',
+            'card_cvv',
+            'card_expiry_month',
+            'card_expiry_year',
         ]);
 
-        $this->firstname = $options['firstname'];
-        $this->lastname = $options['lastname'];
-        $this->email = $options['email'];
-        $this->address = $options['address'];
-        $this->zip = $options['zip'];
+        $this->firstname = $attributes['firstname'];
+        $this->lastname = $attributes['lastname'];
+        $this->email = $attributes['email'];
+        $this->address = $attributes['address'];
+        $this->zip = $attributes['zip'];
 
-        $this->amount = $options['amount'];
-        $this->card_number = $options['card_number'];
-        $this->card_cvv = $options['card_cvv'];
-        $this->card_expiry_month = $options['card_expiry_month'];
-        $this->card_expiry_year = $options['card_expiry_year'];
+        $this->amount = $attributes['amount'];
+        $this->card_number = $attributes['card_number'];
+        $this->card_cvv = $attributes['card_cvv'];
+        $this->card_expiry_month = $attributes['card_expiry_month'];
+        $this->card_expiry_year = $attributes['card_expiry_year'];
     }
 
     public function toArray(): array

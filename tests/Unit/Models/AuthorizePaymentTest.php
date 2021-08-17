@@ -67,4 +67,121 @@ class AuthorizePaymentTest extends TestCase
         }
         $this->assertFalse(isset($model));
     }
+
+    /** @test */
+    public function validate_firstname()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['firstname']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_lastname()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['lastname']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_email()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['email']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_address()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['address']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_zip()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['zip']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_card_number()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['card_number']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_card_cvv()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['card_cvv']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_card_expiry_month()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['card_expiry_month']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_card_expiry_year()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['card_expiry_year']);
+            $model = new AuthorizePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
 }
