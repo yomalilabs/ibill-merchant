@@ -2,6 +2,8 @@
 
 namespace IBill\Models;
 
+use IBill\Exceptions\ApiException;
+
 class AuthorizePayment extends Model
 {
     private $firstname;
@@ -18,6 +20,16 @@ class AuthorizePayment extends Model
 
     public function __construct(array $options = null)
     {
+        // amount must be in cents and bigger than 100
+        if (!isset($options['amount']) || (!is_integer($options['amount']) || $options['amount'] < 100)) {
+            throw new ApiException("The minimum amount is 100 cents.");
+        }
+
+        $this->validateExists([
+            'firstname',
+            'lastname'
+        ]);
+
         $this->firstname = $options['firstname'];
         $this->lastname = $options['lastname'];
         $this->email = $options['email'];
