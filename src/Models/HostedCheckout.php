@@ -6,10 +6,13 @@ use IBill\Exceptions\ApiException;
 
 class HostedCheckout extends Model
 {
+    // required fields
     private $amount;
     private $reference;
     private $cancel_url;
     private $success_url;
+
+    // optional
     private $products = [];
     private $tax_amount;
     private $shipping_amount;

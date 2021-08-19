@@ -12,7 +12,7 @@ class HostedCheckoutTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'amount' => 2000,
+            'amount' => 2000, // in cents
             'reference' => '123456789',
             'cancel_url' => 'http://merchant.ibill.test/cancel',
             'success_url' => 'http://merchant.ibill.test/success'
