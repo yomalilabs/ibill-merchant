@@ -44,8 +44,8 @@ class BaseRequest
             'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
-        echo "\r\n" . "URL: {$url}" . "\r\n";
-        print_r($body->toArray());
+        // echo "\r\n" . "URL: {$url}" . "\r\n";
+        // print_r($body->toArray());
 
         try {
             $response = $client->post($url, [
@@ -59,16 +59,16 @@ class BaseRequest
             // var_dump($e->getMessage());
         }
 
-        echo "\r\n" . "\r\n";
-        echo "RESPONSE" . "\r\n";
+        // echo "\r\n" . "\r\n";
+        // echo "RESPONSE" . "\r\n";
         // var_dump("Status Code: " .  $response->getStatusCode());
         // var_dump("getReasonPhrase: " .  $response->getReasonPhrase());
         // var_dump("getProtocolVersion: " .  $response->getProtocolVersion());
         // var_dump("Header - Content Type: " . $response->getHeaders()['Content-Type'][0]);
         // var_dump($response->getBody());
-        echo "\r\n" . "\r\n";
-        var_dump((string) $response->getBody());
-        echo "\r\n" . "\r\n";
+        // echo "\r\n" . "\r\n";
+        // var_dump((string) $response->getBody());
+        // echo "\r\n" . "\r\n";
         if ($this->isValidResponse($response)) {
             return $this->formatResponse($response);
         }
@@ -97,8 +97,8 @@ class BaseRequest
                 return $data;
             }
 
-            var_dump("ERROR: formatResponse - formatResponse");
-            var_dump((string) $response->getBody());
+            // var_dump("ERROR: formatResponse - formatResponse");
+            // var_dump((string) $response->getBody());
 
             if ($data && isset($data->error)) {
                 throw new ApiException($data->error);

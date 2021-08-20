@@ -9,4 +9,4 @@ On success the client will be redirected back to the specified success url to va
 You can trigger a validate hosted checkout request with the payment_id.
 
 ## Tests
-OK (31 tests, 57 assertions)
+OK (45 tests, 103 assertions)

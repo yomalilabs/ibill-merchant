@@ -139,7 +139,6 @@ class HostedCheckoutTest extends TestCase
                 new Product(),
             ]]));
         } catch (ApiException $error) {
-            echo "" . $error->error . "\r\n";
             $this->assertNotNull($error->error);
         }
         $this->assertFalse(isset($model));

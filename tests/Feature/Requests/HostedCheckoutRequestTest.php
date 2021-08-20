@@ -47,8 +47,6 @@ class HostedCheckoutRequestTest extends TestCase
             );
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
-            echo $e->message;
-            die($e->error);
         }
 
         $this->assertEquals(1, $response->success);
