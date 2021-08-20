@@ -17,38 +17,41 @@ class HostedCheckout extends Model
     private $tax_amount;
     private $shipping_amount;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        if (isset($options['reference'])) {
-            $this->reference = $options['reference'];
+        $this->validateExists($attributes, [
+            'reference',
+            'success_url',
+            'cancel_url',
+        ]);
+
+        // required
+        $this->reference = $attributes['reference'];
+        $this->success_url = $attributes['success_url'];
+        $this->cancel_url = $attributes['cancel_url'];
+
+        if (isset($attributes['amount'])) {
+            $this->amount = $attributes['amount'];
         }
-        if (isset($options['amount'])) {
-            $this->amount = $options['amount'];
+
+        if (isset($attributes['shipping_amount'])) {
+            $this->shipping_amount = $attributes['shipping_amount'];
         }
-        if (isset($options['success_url'])) {
-            $this->success_url = $options['success_url'];
+        if (isset($attributes['tax_amount'])) {
+            $this->tax_amount = $attributes['tax_amount'];
         }
-        if (isset($options['cancel_url'])) {
-            $this->cancel_url = $options['cancel_url'];
-        }
-        if (isset($options['shipping_amount'])) {
-            $this->shipping_amount = $options['shipping_amount'];
-        }
-        if (isset($options['tax_amount'])) {
-            $this->tax_amount = $options['tax_amount'];
-        }
-        if (isset($options['products'])) {
+        if (isset($attributes['products'])) {
             // validate if its an array
-            if (!is_array($options['products'])) {
+            if (!is_array($attributes['products'])) {
                 throw new ApiException("The products must be an array.");
             }
             // validate the array item if its instance of Product
-            foreach ($options['products'] as $product) {
+            foreach ($attributes['products'] as $product) {
                 if (!($product instanceof Product)) {
                     throw new ApiException("The product must be an instance of " . Product::class);
                 }
             }
-            $this->products = $options['products'];
+            $this->products = $attributes['products'];
         }
     }
 

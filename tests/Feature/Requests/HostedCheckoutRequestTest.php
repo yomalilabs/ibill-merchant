@@ -10,6 +10,17 @@ use Tests\TestCase;
 
 class HostedCheckoutRequestTest extends TestCase
 {
+    private function validParams($overrides = [])
+    {
+        return array_merge([
+            'amount' => 2000, // in cents
+            'reference' => '123456789',
+            'cancel_url' => 'http://merchant.ibill.test/cancel',
+            'success_url' => 'http://merchant.ibill.test/success'
+
+        ], $overrides);
+    }
+
     /** @test */
     public function create_checkout()
     {
@@ -20,22 +31,23 @@ class HostedCheckoutRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new HostedCheckout([
-                'amount' => 1000,
-                'reference' => 123456789,
-                'products' => [
-                    new Product([
-                        'quantity' => 1,
-                        'codename' => 'product1',
-                    ]),
-                    new Product([
-                        'quantity' => 2,
-                        'codename' => 'product2',
-                    ]),
-                ],
-            ]);
+            $checkout = new HostedCheckout(
+                $this->validParams([
+                    'products' => [
+                        new Product([
+                            'quantity' => 1,
+                            'codename' => 'product1',
+                        ]),
+                        new Product([
+                            'quantity' => 2,
+                            'codename' => 'product2',
+                        ]),
+                    ],
+                ])
+            );
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
+            echo $e->message;
             die($e->error);
         }
 
@@ -70,19 +82,20 @@ class HostedCheckoutRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new HostedCheckout([
-                'reference' => 123456789,
-                'products' => [
-                    new Product([
-                        'quantity' => 1,
-                        'amount' => 10000,
-                    ]),
-                    new Product([
-                        'quantity' => 1,
-                        'amount' => 20000,
-                    ]),
-                ],
-            ]);
+            $checkout = new HostedCheckout(
+                $this->validParams([
+                    'products' => [
+                        new Product([
+                            'quantity' => 1,
+                            'amount' => 10000,
+                        ]),
+                        new Product([
+                            'quantity' => 1,
+                            'amount' => 20000,
+                        ]),
+                    ],
+                ])
+            );
             $response = $client->createHostedCheckout($checkout);
         } catch (ApiException $e) {
         }

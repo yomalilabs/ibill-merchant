@@ -33,6 +33,45 @@ class HostedCheckoutTest extends TestCase
     }
 
     /** @test */
+    public function validate_reference()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['reference']);
+            $model = new HostedCheckout($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_success_url()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['success_url']);
+            $model = new HostedCheckout($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_cancel_url()
+    {
+        try {
+            $params = $this->validParams();
+            unset($params['cancel_url']);
+            $model = new HostedCheckout($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
     public function initialize_model_with_products()
     {
         $params = $this->validParams(

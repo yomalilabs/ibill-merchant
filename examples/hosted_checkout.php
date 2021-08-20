@@ -4,12 +4,14 @@ use IBill\IBill;
 use IBill\Models\HostedCheckout;
 use IBill\Models\Product;
 
+echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
     $client = new IBill([
         // 'environment' => 'sandbox',
-        'accessToken' => 'access-token',
+        'account_id' => 6509,
+        'access_token' => 'access-token',
     ]);
 
     $checkout = new HostedCheckout([
@@ -38,12 +40,16 @@ try {
     ]);
     $response = $client->createHostedCheckout($checkout);
 } catch (Error $e) {
+    var_dump('----');
+    var_dump($e->message);
+    var_dump('----');
+    exit;
 }
 
 // uncomment for production
 // header("Location: {$response->url}");
 
 // for testing purpose only
-echo "<pre>" . "\r\n";
+
 var_dump($response);
 echo '<a target="_blank" href="' . $response->url . '">LINK TO THE CHECKOUT</a>';
