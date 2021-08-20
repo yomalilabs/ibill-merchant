@@ -13,7 +13,6 @@ class ValidateHostedCheckoutRequestTest extends TestCase
     public function validate_payment_id()
     {
         $client = new IBill([
-            // 'environment' => 'sandbox',
             'account_id' => 1234,
             'access_token' => 'access-token',
         ]);

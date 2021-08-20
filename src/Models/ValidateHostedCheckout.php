@@ -6,10 +6,14 @@ class ValidateHostedCheckout extends Model
 {
     private $payment_id;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        if (isset($options['payment_id'])) {
-            $this->payment_id = $options['payment_id'];
+        $this->validateExists($attributes, [
+            'payment_id',
+        ]);
+
+        if (isset($attributes['payment_id'])) {
+            $this->payment_id = $attributes['payment_id'];
         }
     }
 

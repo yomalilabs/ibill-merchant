@@ -32,5 +32,4 @@ try {
     var_dump($e->error);
 }
 
-
 var_dump($response);
