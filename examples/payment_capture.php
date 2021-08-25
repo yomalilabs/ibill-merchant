@@ -14,14 +14,13 @@ try {
     ]);
 
     $model = new CaptureAuthorizedPayment([
-        'amount' => 10.25,
-        'authorized_payment_id' => 'ALWFR1YFHY6Y1XP',
+        'amount' => 1025,
+        'authorized_payment_id' => 'AMB8PLV2HPWVGNH',
     ]);
     $response = $iBill->captureAuthorizedPayment($model);
 } catch (ApiException $e) {
     var_dump("ERROR");
     var_dump($e->error);
 }
-
 
 var_dump($response);
