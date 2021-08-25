@@ -4,6 +4,7 @@ namespace Tests\Feature\Requests;
 
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
+use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use Tests\TestCase;
 
@@ -26,7 +27,26 @@ class CaptureAuthorizedPaymentRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new CaptureAuthorizedPayment($this->validParams());
+            $checkout = new AuthorizePayment(
+                [
+                    'firstname' => 'Firstname',
+                    'lastname' => 'Lastname',
+                    'email' => 'info@example.com',
+                    'address' => '1234 Fake Address',
+                    'zip' => 12345,
+
+                    'amount' => 1025,
+                    'card_number' => 6011111111111117,
+                    'card_cvv' => 123,
+                    'card_expiry_month' => 10,
+                    'card_expiry_year' => 2025,
+                ]
+            );
+            $response = $client->authorizePayment($checkout);
+
+            $checkout = new CaptureAuthorizedPayment($this->validParams([
+                'authorized_payment_id' => $response->id
+            ]));
             $response = $client->captureAuthorizedPayment($checkout);
         } catch (ApiException $e) {
         }
@@ -47,6 +67,9 @@ class CaptureAuthorizedPaymentRequestTest extends TestCase
         ]);
 
         try {
+
+
+
             $checkout = new CaptureAuthorizedPayment(
                 $this->validParams([
                     'authorized_payment_id' => 'faulty',
