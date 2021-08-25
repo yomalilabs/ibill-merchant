@@ -17,6 +17,13 @@ class Model
             if (!isset($attributes[$key])) {
                 throw new ApiException("Please provide the {$key} attribute.");
             }
+
+            if ($key === 'amount') {
+                // amount must be in cents and bigger than 100
+                if (!isset($attributes['amount']) || (!is_integer($attributes['amount']) || $attributes['amount'] < 100)) {
+                    throw new ApiException("The minimum amount is 100 cents.");
+                }
+            }
         }
     }
 }

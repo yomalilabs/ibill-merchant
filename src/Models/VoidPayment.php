@@ -7,10 +7,15 @@ class VoidPayment extends Model
     private $amount;
     private $payment_id;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        $this->amount = $options['amount'];
-        $this->payment_id = $options['payment_id'];
+        $this->validateExists($attributes, [
+            'amount',
+            'payment_id',
+        ]);
+
+        $this->amount = $attributes['amount'];
+        $this->payment_id = $attributes['payment_id'];
     }
 
     public function toArray(): array

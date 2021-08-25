@@ -16,7 +16,7 @@ try {
     ]);
 
     $model = new VoidPayment([
-        'amount' => 10.25,
+        'amount' => 1025,
         'payment_id' => 'ALWZU1XGHYQLHZV',
     ]);
     $response = $iBill->voidPayment($model);
