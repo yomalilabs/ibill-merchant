@@ -17,14 +17,6 @@ try {
     $model = new RefundPayment([
         'amount' => 1025,
         'payment_id' => 'ALWP5LTKHPXFK54',
-
-        // 'firstname' => 'Firstname',
-        // 'lastname' => 'Lastname',
-        // 'email' => 'info@example.com',
-
-        // 'card_number' => 6011111111111117,
-        // 'card_expiry_month' => 10,
-        // 'card_expiry_year' => 2025,
     ]);
     $response = $iBill->refundPayment($model);
 } catch (ApiException $e) {
