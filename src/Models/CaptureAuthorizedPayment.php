@@ -2,15 +2,26 @@
 
 namespace IBill\Models;
 
+use IBill\Exceptions\ApiException;
+
 class CaptureAuthorizedPayment extends Model
 {
     private $amount;
     private $authorized_payment_id;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        $this->amount = $options['amount'];
-        $this->authorized_payment_id = $options['authorized_payment_id'];
+        // amount must be in cents and bigger than 100
+        if (!isset($attributes['amount']) || (!is_integer($attributes['amount']) || $attributes['amount'] < 100)) {
+            throw new ApiException("The minimum amount is 100 cents.");
+        }
+
+        $this->validateExists($attributes, [
+            'authorized_payment_id',
+        ]);
+
+        $this->amount = $attributes['amount'];
+        $this->authorized_payment_id = $attributes['authorized_payment_id'];
     }
 
     public function toArray(): array

@@ -54,7 +54,7 @@ class AuthorizePaymentRequestTest extends TestCase
     {
         $client = new IBill([
             'account_id' => 6509,
-            'access_token' => 'faulty-token'
+            'access_token' => 'access-token',
         ]);
 
         try {
