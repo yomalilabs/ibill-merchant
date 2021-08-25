@@ -2,50 +2,33 @@
 
 namespace IBill\Models;
 
+use IBill\Exceptions\ApiException;
+
 class RefundPayment extends Model
 {
-    private $firstname;
-    private $lastname;
-    private $email;
-    private $address;
-    private $zip;
-
-    private $payment_id;
     private $amount;
-    private $card_number;
-    private $card_expiry_month;
-    private $card_expiry_year;
+    private $payment_id;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        $this->amount = $options['amount'];
-        $this->payment_id = $options['payment_id'];
+        // amount must be in cents and bigger than 100
+        if (!isset($attributes['amount']) || (!is_integer($attributes['amount']) || $attributes['amount'] < 100)) {
+            throw new ApiException("The minimum amount is 100 cents.");
+        }
 
-        // $this->firstname = $options['firstname'];
-        // $this->lastname = $options['lastname'];
-        // $this->email = $options['email'];
-        // $this->address = $options['address'];
-        // $this->zip = $options['zip'];
+        $this->validateExists($attributes, [
+            'payment_id',
+        ]);
 
-        // $this->card_number = $options['card_number'];
-        // $this->card_expiry_month = $options['card_expiry_month'];
-        // $this->card_expiry_year = $options['card_expiry_year'];
+        $this->amount = $attributes['amount'];
+        $this->payment_id = $attributes['payment_id'];
     }
 
     public function toArray(): array
     {
         return [
-            'firstname' => $this->firstname,
-            'lastname' => $this->lastname,
-            'email' => $this->email,
-            'address' => $this->address,
-            'zip' => $this->zip,
-
-            'payment_id' => $this->payment_id,
             'amount' => $this->amount,
-            'card_number' => $this->card_number,
-            'card_expiry_month' => $this->card_expiry_month,
-            'card_expiry_year' => $this->card_expiry_year,
+            'payment_id' => $this->payment_id,
         ];
     }
 }

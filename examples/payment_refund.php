@@ -15,7 +15,7 @@ try {
     ]);
 
     $model = new RefundPayment([
-        'amount' => 10.25,
+        'amount' => 1025,
         'payment_id' => 'ALWP5LTKHPXFK54',
 
         // 'firstname' => 'Firstname',
