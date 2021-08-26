@@ -8,6 +8,7 @@ use IBill\Models\AuthorizeAndCapturePayment;
 use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
+use IBill\Models\ChargePayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\ValidateHostedCheckout;
 use IBill\Models\VoidPayment;
@@ -20,6 +21,7 @@ use IBill\Responses\AuthorizeAndCapturePaymentResponse;
 use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
+use IBill\Responses\ChargePaymentResponse;
 use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
 use IBill\Responses\VoidPaymentResponse;
@@ -77,6 +79,14 @@ class IBill
     public function captureAuthorizedPayment(CaptureAuthorizedPayment $model): CaptureAuthorizedPaymentResponse
     {
         return (new PaymentsRequest($this->config))->capture($model);
+    }
+
+    /**
+     * Do a payment authorize request
+     */
+    public function chargePayment(ChargePayment $model): ChargePaymentResponse
+    {
+        return (new PaymentsRequest($this->config))->charge($model);
     }
 
     /**

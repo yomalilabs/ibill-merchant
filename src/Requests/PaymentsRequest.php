@@ -5,11 +5,13 @@ namespace IBill\Requests;
 use IBill\Models\AuthorizeAndCapturePayment;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
+use IBill\Models\ChargePayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\VoidPayment;
 use IBill\Responses\AuthorizeAndCapturePaymentResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
+use IBill\Responses\ChargePaymentResponse;
 use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\VoidPaymentResponse;
 
@@ -41,6 +43,20 @@ class PaymentsRequest extends BaseRequest
         $response = $this->post($url, $body);
 
         return new CaptureAuthorizedPaymentResponse($response);
+    }
+
+    /**
+     * Payment Charge Payment Request
+     *
+     * @param ChargePayment $body
+     */
+    public function charge(ChargePayment $body): ChargePaymentResponse
+    {
+        $url = $this->config->getBaseUrl() . '/payment/charge';
+
+        $response = $this->post($url, $body);
+
+        return new ChargePaymentResponse($response);
     }
 
     /**
