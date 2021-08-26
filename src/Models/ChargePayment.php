@@ -16,19 +16,33 @@ class ChargePayment extends Model
     private $card_expiry_month;
     private $card_expiry_year;
 
-    public function __construct(array $options = null)
+    public function __construct(array $attributes = null)
     {
-        $this->firstname = $options['firstname'];
-        $this->lastname = $options['lastname'];
-        $this->email = $options['email'];
-        $this->address = $options['address'];
-        $this->zip = $options['zip'];
+        $this->validateExists($attributes, [
+            'amount',
+            'firstname',
+            'lastname',
+            'email',
+            'address',
+            'zip',
+            'amount',
+            'card_number',
+            'card_cvv',
+            'card_expiry_month',
+            'card_expiry_year',
+        ]);
 
-        $this->amount = $options['amount'];
-        $this->card_number = $options['card_number'];
-        $this->card_cvv = $options['card_cvv'];
-        $this->card_expiry_month = $options['card_expiry_month'];
-        $this->card_expiry_year = $options['card_expiry_year'];
+        $this->firstname = $attributes['firstname'];
+        $this->lastname = $attributes['lastname'];
+        $this->email = $attributes['email'];
+        $this->address = $attributes['address'];
+        $this->zip = $attributes['zip'];
+
+        $this->amount = $attributes['amount'];
+        $this->card_number = $attributes['card_number'];
+        $this->card_cvv = $attributes['card_cvv'];
+        $this->card_expiry_month = $attributes['card_expiry_month'];
+        $this->card_expiry_year = $attributes['card_expiry_year'];
     }
 
     public function toArray(): array
