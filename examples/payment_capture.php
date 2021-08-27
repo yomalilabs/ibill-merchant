@@ -15,7 +15,7 @@ try {
 
     $model = new CaptureAuthorizedPayment([
         'amount' => 1025,
-        'authorized_payment_id' => 'AMB8PLV2HPWVGNH',
+        'authorized_payment_id' => $_GET['id'],
     ]);
     $response = $iBill->captureAuthorizedPayment($model);
 } catch (ApiException $e) {
