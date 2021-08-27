@@ -19,7 +19,7 @@ try {
 
         'firstname' => 'Firstname',
         'lastname' => 'Lastname',
-        'email' => 'info@example.com',
+        'email' => 'user2@example.com',
         'address' => '1234 Fake Address',
         'zip' => 12345,
 
