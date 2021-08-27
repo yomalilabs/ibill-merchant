@@ -5,6 +5,7 @@ namespace Tests\Feature\Requests;
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\AuthorizeAndCapturePayment;
+use IBill\Models\ChargePayment;
 use IBill\Models\VoidPayment;
 use Tests\TestCase;
 
@@ -19,20 +20,20 @@ class VoidPaymentRequestTest extends TestCase
         ]);
 
         try {
-            $model = new AuthorizeAndCapturePayment([
+            $model = new ChargePayment([
                 'firstname' => 'Firstname',
                 'lastname' => 'Lastname',
                 'email' => 'info@example.com',
                 'address' => '1234 Fake Address',
                 'zip' => 12345,
 
-                'amount' => 15.25,
+                'amount' => 1525,
                 'card_number' => 6011111111111117,
                 'card_cvv' => 123,
                 'card_expiry_month' => 10,
                 'card_expiry_year' => 2025,
             ]);
-            $response = $client->authorizeAndCapturePayment($model);
+            $response = $client->chargePayment($model);
 
             $checkout = new VoidPayment([
                 'amount' => 1025,

@@ -2,13 +2,11 @@
 
 namespace IBill\Requests;
 
-use IBill\Models\AuthorizeAndCapturePayment;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\ChargePayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\VoidPayment;
-use IBill\Responses\AuthorizeAndCapturePaymentResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
 use IBill\Responses\ChargePaymentResponse;
@@ -57,20 +55,6 @@ class PaymentsRequest extends BaseRequest
         $response = $this->post($url, $body);
 
         return new ChargePaymentResponse($response);
-    }
-
-    /**
-     * Payment Authorize and Capture Request
-     *
-     * @param AuthorizeAndCapturePayment $body
-     */
-    public function authorizeAndCapture(AuthorizeAndCapturePayment $body): AuthorizeAndCapturePaymentResponse
-    {
-        $url = $this->config->getBaseUrl() . '/payment/authorize-and-capture';
-
-        $response = $this->post($url, $body);
-
-        return new AuthorizeAndCapturePaymentResponse($response);
     }
 
     /**

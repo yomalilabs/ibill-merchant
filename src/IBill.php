@@ -90,14 +90,6 @@ class IBill
     }
 
     /**
-     * Do a capture authorized payment request
-     */
-    public function authorizeAndCapturePayment(AuthorizeAndCapturePayment $model): AuthorizeAndCapturePaymentResponse
-    {
-        return (new PaymentsRequest($this->config))->authorizeAndCapture($model);
-    }
-
-    /**
      * Do a refund payment request
      */
     public function refundPayment(RefundPayment $model): RefundPaymentResponse
