@@ -48,7 +48,7 @@ class ChargePayment extends Model
     public function toArray(): array
     {
         return [
-            'is_sale' => true,
+            'is_sale' => true, // to authorize and capture
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'email' => $this->email,

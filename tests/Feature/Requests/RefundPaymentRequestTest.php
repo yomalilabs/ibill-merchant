@@ -42,7 +42,7 @@ class RefundPaymentRequestTest extends TestCase
             ]);
             $response = $client->refundPayment($checkout);
         } catch (ApiException $e) {
-            var_dump($e->message);
+            // var_dump($e->message);
         }
 
         $this->assertEquals(1, $response->success);
