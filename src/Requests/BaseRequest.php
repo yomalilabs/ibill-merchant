@@ -29,7 +29,7 @@ class BaseRequest
      * Post the body to the given url
      *
      * @param string $url
-     * @param [type] $body
+     * @param Model $body
      */
     protected function post(string $url, Model $body)
     {

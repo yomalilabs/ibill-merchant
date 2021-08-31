@@ -9,14 +9,13 @@ require '../vendor/autoload.php';
 
 try {
     $iBill = new IBill([
-        // 'environment' => 'sandbox',
         'account_id' => 6509,
         'access_token' => 'access-token',
     ]);
 
     $model = new RefundPayment([
-        'amount' => 1025,
-        'payment_id' => 'ALWP5LTKHPXFK54',
+        'amount' => 500,
+        'payment_id' => $_GET['id'],
     ]);
     $response = $iBill->refundPayment($model);
 } catch (ApiException $e) {

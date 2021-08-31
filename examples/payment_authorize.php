@@ -23,7 +23,7 @@ try {
         'address' => '1234 Fake Address',
         'zip' => 12345,
 
-        'amount' => 1025,
+        'amount' => 2000,
         'card_number' => 6011111111111117,
         'card_cvv' => 123,
         'card_expiry_month' => 10,

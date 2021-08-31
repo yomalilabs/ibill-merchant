@@ -14,7 +14,7 @@ try {
     ]);
 
     $model = new CaptureAuthorizedPayment([
-        'amount' => 1025,
+        'amount' => 1500,
         'authorized_payment_id' => $_GET['id'],
     ]);
     $response = $iBill->captureAuthorizedPayment($model);

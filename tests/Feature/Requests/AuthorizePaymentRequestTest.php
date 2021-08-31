@@ -29,7 +29,7 @@ class AuthorizePaymentRequestTest extends TestCase
     }
 
     /** @test */
-    public function create_checkout()
+    public function do_authorize_payment_request()
     {
         $client = new IBill([
             'account_id' => 6509,

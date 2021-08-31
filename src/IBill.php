@@ -2,27 +2,22 @@
 
 namespace IBill;
 
-use IBill\Requests\HostedCheckoutRequest;
 use IBill\Models\ApiConfig;
-use IBill\Models\AuthorizeAndCapturePayment;
-use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\ChargePayment;
+use IBill\Models\HostedCheckout;
 use IBill\Models\LookupPayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\ValidateHostedCheckout;
 use IBill\Models\VoidPayment;
-use IBill\Requests\AuthorizeAndCapturePaymentRequest;
-use IBill\Requests\AuthorizePaymentRequest;
-use IBill\Requests\CaptureAuthorizedPaymentRequest;
+use IBill\Requests\HostedCheckoutRequest;
 use IBill\Requests\PaymentsRequest;
 use IBill\Requests\ValidateHostedCheckoutRequest;
-use IBill\Responses\AuthorizeAndCapturePaymentResponse;
-use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
 use IBill\Responses\ChargePaymentResponse;
+use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\LookupPaymentResponse;
 use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
@@ -68,7 +63,11 @@ class IBill
     }
 
     /**
-     * Do a payment authorize request
+     * Do a authorize payment request
+     * Hold off the money in the client's account until capture or expired
+     *
+     * @param AuthorizePayment $model
+     * @return AuthorizePaymentResponse
      */
     public function authorizePayment(AuthorizePayment $model): AuthorizePaymentResponse
     {
@@ -77,6 +76,10 @@ class IBill
 
     /**
      * Do a capture authorized payment request
+     * Take the money that was authorized
+     *
+     * @param CaptureAuthorizedPayment $model
+     * @return CaptureAuthorizedPaymentResponse
      */
     public function captureAuthorizedPayment(CaptureAuthorizedPayment $model): CaptureAuthorizedPaymentResponse
     {
@@ -84,7 +87,10 @@ class IBill
     }
 
     /**
-     * Do a payment authorize request
+     * Do a charge payment request (will skip the authorization)
+     *
+     * @param ChargePayment $model
+     * @return ChargePaymentResponse
      */
     public function chargePayment(ChargePayment $model): ChargePaymentResponse
     {
@@ -93,6 +99,9 @@ class IBill
 
     /**
      * Do a refund payment request
+     *
+     * @param RefundPayment $model
+     * @return RefundPaymentResponse
      */
     public function refundPayment(RefundPayment $model): RefundPaymentResponse
     {
@@ -101,6 +110,9 @@ class IBill
 
     /**
      * Do a void payment request
+     *
+     * @param VoidPayment $model
+     * @return VoidPaymentResponse
      */
     public function voidPayment(VoidPayment $model): VoidPaymentResponse
     {
