@@ -16,8 +16,7 @@ try {
     ]);
 
     $model = new VoidPayment([
-        'amount' => 1025,
-        'payment_id' => 'ALWZU1XGHYQLHZV',
+        'payment_id' => $_GET['id'],
     ]);
     $response = $iBill->voidPayment($model);
 } catch (ApiException $e) {
