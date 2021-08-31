@@ -27,21 +27,7 @@ class CaptureAuthorizedPaymentRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new AuthorizePayment(
-                [
-                    'firstname' => 'Firstname',
-                    'lastname' => 'Lastname',
-                    'email' => 'info@example.com',
-                    'address' => '1234 Fake Address',
-                    'zip' => 12345,
-
-                    'amount' => 1025,
-                    'card_number' => 6011111111111117,
-                    'card_cvv' => 123,
-                    'card_expiry_month' => 10,
-                    'card_expiry_year' => 2025,
-                ]
-            );
+            $checkout = new AuthorizePayment($this->validParamsForAuthOrChargeModel());
             $response = $client->authorizePayment($checkout);
 
             $checkout = new CaptureAuthorizedPayment($this->validParams([

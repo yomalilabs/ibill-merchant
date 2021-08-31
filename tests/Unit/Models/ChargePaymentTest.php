@@ -13,7 +13,7 @@ class ChargePaymentTest extends TestCase
     /** @test */
     public function initialize_model()
     {
-        $model = new ChargePayment($this->validParamsForAuthOrChargeModelForAuthOrChargeModel());
+        $model = new ChargePayment($this->validParamsForAuthOrChargeModel());
 
         $productArray = $model->toArray();
         $this->assertEquals('Firstname', $productArray['firstname']);

@@ -1,5 +1,10 @@
 # Merchant Package for iBill API
 
+## How To Install
+ - Download the repository to your computer.
+ - `composer install`
+ - Look in the `examples` directory for examples
+
 ## Hosted Checkout
 You can trigger a hosted checkout request that will create the session and store the checkout.
 The response will include an url to redirect the client to that will be used to enter the card information.
