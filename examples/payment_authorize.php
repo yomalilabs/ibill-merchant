@@ -15,8 +15,6 @@ try {
     ]);
 
     $model = new AuthorizePayment([
-        // 'purchase_id' => 'the unique id/reference token',
-
         'firstname' => 'Firstname',
         'lastname' => 'Lastname',
         'email' => 'user3@example.com',
@@ -28,6 +26,8 @@ try {
         'card_cvv' => 123,
         'card_expiry_month' => 10,
         'card_expiry_year' => 2025,
+
+        'order_id' => random_int(1, 99999),
     ]);
     $response = $iBill->authorizePayment($model);
 } catch (ApiException $e) {
