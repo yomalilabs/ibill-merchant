@@ -11,23 +11,6 @@ use Tests\TestCase;
 
 class AuthorizePaymentRequestTest extends TestCase
 {
-    private function validParams($overrides = [])
-    {
-        return array_merge([
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'email' => 'info@example.com',
-            'address' => '1234 Fake Address',
-            'zip' => 12345,
-
-            'amount' => 1025,
-            'card_number' => 6011111111111117,
-            'card_cvv' => 123,
-            'card_expiry_month' => 10,
-            'card_expiry_year' => 2025,
-        ], $overrides);
-    }
-
     /** @test */
     public function do_authorize_payment_request()
     {
@@ -37,7 +20,7 @@ class AuthorizePaymentRequestTest extends TestCase
         ]);
 
         try {
-            $checkout = new AuthorizePayment($this->validParams());
+            $checkout = new AuthorizePayment($this->validParamsForAuthOrChargeModel());
             $response = $client->authorizePayment($checkout);
         } catch (ApiException $e) {
         }
@@ -59,7 +42,7 @@ class AuthorizePaymentRequestTest extends TestCase
 
         try {
             $checkout = new AuthorizePayment(
-                $this->validParams([
+                $this->validParamsForAuthOrChargeModel([
                     'card_number' => 'faulty',
                 ])
             );
