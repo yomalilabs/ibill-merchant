@@ -16,6 +16,8 @@ class ChargePayment extends Model
     private $card_expiry_month;
     private $card_expiry_year;
 
+    private $order_id;
+
     public function __construct(array $attributes = null)
     {
         $this->validateExists($attributes, [
@@ -30,6 +32,7 @@ class ChargePayment extends Model
             'card_cvv',
             'card_expiry_month',
             'card_expiry_year',
+            'order_id',
         ]);
 
         $this->firstname = $attributes['firstname'];
@@ -43,6 +46,8 @@ class ChargePayment extends Model
         $this->card_cvv = $attributes['card_cvv'];
         $this->card_expiry_month = $attributes['card_expiry_month'];
         $this->card_expiry_year = $attributes['card_expiry_year'];
+
+        $this->order_id = $attributes['order_id'];
     }
 
     public function toArray(): array
@@ -60,6 +65,8 @@ class ChargePayment extends Model
             'card_cvv' => $this->card_cvv,
             'card_expiry_month' => $this->card_expiry_month,
             'card_expiry_year' => $this->card_expiry_year,
+
+            'order_id' => $this->order_id,
         ];
     }
 }

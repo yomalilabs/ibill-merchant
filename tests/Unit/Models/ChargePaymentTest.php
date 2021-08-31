@@ -6,31 +6,14 @@ use IBill\Exceptions\ApiException;
 use IBill\Models\ChargePayment;
 use IBill\Models\HostedCheckout;
 use IBill\Models\Product;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ChargePaymentTest extends TestCase
 {
-    private function validParams($overrides = [])
-    {
-        return array_merge([
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'email' => 'info@example.com',
-            'address' => '1234 Fake Address',
-            'zip' => 12345,
-
-            'amount' => 1025,
-            'card_number' => 6011111111111117,
-            'card_cvv' => 123,
-            'card_expiry_month' => 10,
-            'card_expiry_year' => 2025,
-        ], $overrides);
-    }
-
     /** @test */
     public function initialize_model()
     {
-        $model = new ChargePayment($this->validParams());
+        $model = new ChargePayment($this->validParamsForAuthOrChargeModelForAuthOrChargeModel());
 
         $productArray = $model->toArray();
         $this->assertEquals('Firstname', $productArray['firstname']);
@@ -50,7 +33,7 @@ class ChargePaymentTest extends TestCase
     {
         // no amount passed
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['amount']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -60,7 +43,7 @@ class ChargePaymentTest extends TestCase
 
         // minimum amount
         try {
-            $params = $this->validParams(['amount' => 10]);
+            $params = $this->validParamsForAuthOrChargeModel(['amount' => 10]);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
             $this->assertNotNull($error->message);
@@ -72,7 +55,7 @@ class ChargePaymentTest extends TestCase
     public function validate_firstname()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['firstname']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -85,7 +68,7 @@ class ChargePaymentTest extends TestCase
     public function validate_lastname()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['lastname']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -98,7 +81,7 @@ class ChargePaymentTest extends TestCase
     public function validate_email()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['email']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -111,7 +94,7 @@ class ChargePaymentTest extends TestCase
     public function validate_address()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['address']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -124,7 +107,7 @@ class ChargePaymentTest extends TestCase
     public function validate_zip()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['zip']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -137,7 +120,7 @@ class ChargePaymentTest extends TestCase
     public function validate_card_number()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['card_number']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -150,7 +133,7 @@ class ChargePaymentTest extends TestCase
     public function validate_card_cvv()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['card_cvv']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -163,7 +146,7 @@ class ChargePaymentTest extends TestCase
     public function validate_card_expiry_month()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['card_expiry_month']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
@@ -176,8 +159,21 @@ class ChargePaymentTest extends TestCase
     public function validate_card_expiry_year()
     {
         try {
-            $params = $this->validParams();
+            $params = $this->validParamsForAuthOrChargeModel();
             unset($params['card_expiry_year']);
+            $model = new ChargePayment($params);
+        } catch (ApiException $error) {
+            $this->assertNotNull($error->message);
+        }
+        $this->assertFalse(isset($model));
+    }
+
+    /** @test */
+    public function validate_order_id()
+    {
+        try {
+            $params = $this->validParamsForAuthOrChargeModel();
+            unset($params['order_id']);
             $model = new ChargePayment($params);
         } catch (ApiException $error) {
             $this->assertNotNull($error->message);

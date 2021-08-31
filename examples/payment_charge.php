@@ -28,6 +28,8 @@ try {
         'card_cvv' => 123,
         'card_expiry_month' => 10,
         'card_expiry_year' => 2025,
+
+        'order_id' => random_int(1, 99999),
     ]);
     $response = $iBill->chargePayment($model);
 } catch (ApiException $e) {
