@@ -27,7 +27,7 @@ class ChargePaymentRequestTest extends TestCase
     }
 
     /** @test */
-    public function create_checkout()
+    public function create_charge_payment()
     {
         $client = new IBill([
             'account_id' => 6509,

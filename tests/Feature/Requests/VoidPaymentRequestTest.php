@@ -36,7 +36,6 @@ class VoidPaymentRequestTest extends TestCase
             $response = $client->chargePayment($model);
 
             $checkout = new VoidPayment([
-                'amount' => 1025,
                 'payment_id' => $response->id,
             ]);
             $response = $client->voidPayment($checkout);
@@ -61,7 +60,6 @@ class VoidPaymentRequestTest extends TestCase
         try {
             $checkout = new VoidPayment(
                 [
-                    'amount' => 1025,
                     'payment_id' => 'faulty',
                 ]
             );
