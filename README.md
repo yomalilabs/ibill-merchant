@@ -8,5 +8,13 @@ On success the client will be redirected back to the specified success url to va
 ## Validate Hosted Checkout
 You can trigger a validate hosted checkout request with the payment_id.
 
+## Payment API
+ - Charge Payment (sale)
+ - Authorize Payment
+ - Capture Authorized Payment
+ - Refund Payment
+ - Void Payment
+ - Lookup Payment Information
+
 ## Tests
 OK (86 tests, 202 assertions)
