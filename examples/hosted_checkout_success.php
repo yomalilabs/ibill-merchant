@@ -16,7 +16,6 @@ if (!$paymentId) {
 
 print_r($_GET);
 
-
 try {
     $client = new IBill([
         'accountId' => 1234,
