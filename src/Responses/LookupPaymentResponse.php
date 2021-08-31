@@ -9,6 +9,7 @@ class LookupPaymentResponse extends Response
 {
     // the unique reference id
     public $id = '';
+    public $data = '';
 
     public function __construct(stdClass $response = null)
     {
@@ -16,6 +17,9 @@ class LookupPaymentResponse extends Response
 
         if (isset($response->id)) {
             $this->id = $response->id;
+        }
+        if (isset($response->data)) {
+            $this->data = $response->data;
         }
     }
 }
