@@ -9,6 +9,7 @@ use IBill\Models\HostedCheckout;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\ChargePayment;
+use IBill\Models\LookupPayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\ValidateHostedCheckout;
 use IBill\Models\VoidPayment;
@@ -22,6 +23,7 @@ use IBill\Responses\HostedCheckoutResponse;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
 use IBill\Responses\ChargePaymentResponse;
+use IBill\Responses\LookupPaymentResponse;
 use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\ValidateHostedCheckoutResponse;
 use IBill\Responses\VoidPaymentResponse;
@@ -103,5 +105,16 @@ class IBill
     public function voidPayment(VoidPayment $model): VoidPaymentResponse
     {
         return (new PaymentsRequest($this->config))->void($model);
+    }
+
+    /**
+     * Do a lookup payment request
+     *
+     * @param LookupPayment $model
+     * @return LookupPaymentResponse
+     */
+    public function lookupPayment(LookupPayment $model): LookupPaymentResponse
+    {
+        return (new PaymentsRequest($this->config))->lookup($model);
     }
 }

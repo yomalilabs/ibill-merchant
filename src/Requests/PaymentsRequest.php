@@ -5,11 +5,13 @@ namespace IBill\Requests;
 use IBill\Models\AuthorizePayment;
 use IBill\Models\CaptureAuthorizedPayment;
 use IBill\Models\ChargePayment;
+use IBill\Models\LookupPayment;
 use IBill\Models\RefundPayment;
 use IBill\Models\VoidPayment;
 use IBill\Responses\AuthorizePaymentResponse;
 use IBill\Responses\CaptureAuthorizedPaymentResponse;
 use IBill\Responses\ChargePaymentResponse;
+use IBill\Responses\LookupPaymentResponse;
 use IBill\Responses\RefundPaymentResponse;
 use IBill\Responses\VoidPaymentResponse;
 
@@ -83,5 +85,19 @@ class PaymentsRequest extends BaseRequest
         $response = $this->post($url, $body);
 
         return new VoidPaymentResponse($response);
+    }
+
+    /**
+     * Payment lookup Request
+     *
+     * @param LookupPayment $body
+     */
+    public function lookup(LookupPayment $body): LookupPaymentResponse
+    {
+        $url = $this->config->getBaseUrl() . '/payment/lookup';
+
+        $response = $this->post($url, $body);
+
+        return new LookupPaymentResponse($response);
     }
 }
