@@ -45,8 +45,10 @@ class BaseRequest
             'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
-        // echo "\r\n" . "URL: {$url}" . "\r\n";
-        // print_r($body->toArray());
+        if (Config::IS_DEBUG) {
+            echo "\r\n" . "URL: {$url}" . "\r\n";
+            print_r($body->toArray());
+        }
 
         try {
             $response = $client->post($url, [
@@ -60,11 +62,13 @@ class BaseRequest
             // var_dump($e->getMessage());
         }
 
-        echo "\r\n" . "\r\n";
-        echo "RESPONSE" . "\r\n";
-        echo "\r\n" . "\r\n";
-        var_dump((string) $response->getBody());
-        echo "\r\n" . "\r\n";
+        if (Config::IS_DEBUG) {
+            echo "\r\n" . "\r\n";
+            echo "RESPONSE" . "\r\n";
+            echo "\r\n" . "\r\n";
+            var_dump((string) $response->getBody());
+            echo "\r\n" . "\r\n";
+        }
         if ($this->isValidResponse($response)) {
             return $this->formatResponse($response);
         }
