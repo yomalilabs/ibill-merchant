@@ -32,9 +32,8 @@ try {
     ]);
     $response = $client->authorizePayment($model);
 } catch (ApiException $e) {
-    var_dump('----');
+    var_dump('ERROR');
     var_dump($e->message);
-    var_dump('----');
     exit;
 }
 

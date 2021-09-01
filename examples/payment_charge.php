@@ -16,8 +16,6 @@ try {
     ]);
 
     $model = new ChargePayment([
-        // 'purchase_id' => 'the unique id/reference token',
-
         'firstname' => 'Firstname',
         'lastname' => 'Lastname',
         'email' => 'info@example.com',
@@ -34,9 +32,8 @@ try {
     ]);
     $response = $client->chargePayment($model);
 } catch (ApiException $e) {
-    var_dump('----');
+    var_dump('ERROR');
     var_dump($e->message);
-    var_dump('----');
     exit;
 }
 
