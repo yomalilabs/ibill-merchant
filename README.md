@@ -3,7 +3,7 @@
 ## How To Install
  - Download the repository to your computer.
  - `composer install`
- - Look in the `examples` directory for examples
+ - Look in the `/examples` directory for basic usage.
 
 ## Hosted Checkout
 You can trigger a hosted checkout request that will create the session and store the checkout.
@@ -22,4 +22,4 @@ You can trigger a validate hosted checkout request with the payment_id.
  - Lookup Payment Information
 
 ## Tests
-OK (88 tests, 206 assertions)
+OK (89 tests, 208 assertions)

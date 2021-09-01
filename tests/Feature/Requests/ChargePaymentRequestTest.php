@@ -12,10 +12,7 @@ class ChargePaymentRequestTest extends TestCase
     /** @test */
     public function create_charge_payment()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new ChargePayment($this->validParamsForAuthOrChargeModel());
@@ -33,10 +30,7 @@ class ChargePaymentRequestTest extends TestCase
     /** @test */
     public function validate_card_number()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new ChargePayment(

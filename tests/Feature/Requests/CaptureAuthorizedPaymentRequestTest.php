@@ -21,10 +21,7 @@ class CaptureAuthorizedPaymentRequestTest extends TestCase
     /** @test */
     public function create_checkout()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new AuthorizePayment($this->validParamsForAuthOrChargeModel());
@@ -47,15 +44,9 @@ class CaptureAuthorizedPaymentRequestTest extends TestCase
     /** @test */
     public function validate_card_number()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'faulty-token'
-        ]);
+        $client = $this->validIBillClient();
 
         try {
-
-
-
             $checkout = new CaptureAuthorizedPayment(
                 $this->validParams([
                     'authorized_payment_id' => 'faulty',
