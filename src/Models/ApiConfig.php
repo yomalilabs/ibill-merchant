@@ -40,9 +40,9 @@ class ApiConfig
         if (isset($configOptions['timeout'])) {
             $this->timeout = $configOptions['timeout'];
         }
-        if (isset($configOptions['environment'])) {
-            $this->environment = $configOptions['environment'];
-        }
+        // if (isset($configOptions['environment'])) {
+        //     $this->environment = $configOptions['environment'];
+        // }
 
         // do not allow the customer to override
         // if (isset($configOptions['payment_gateway_username'])) {
@@ -50,9 +50,9 @@ class ApiConfig
         // }
 
         // when sandbox - append _sandbox to the gateway username
-
-        if ($this->environment === 'sandbox') {
+        if (isset($configOptions['environment']) && $configOptions['environment'] === 'sandbox') {
             // $this->baseUrl = Config::API_URL_SANDBOX;
+            $this->environment = 'sandbox';
             $this->paymentGatewayUsername .= '_sandbox';
         }
     }

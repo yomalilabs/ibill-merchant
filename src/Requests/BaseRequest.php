@@ -38,9 +38,10 @@ class BaseRequest
             'user-agent'    => Config::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json',
-            'iBill-Version' => Config::IBILL_VERSION,
-            'iBill-Account-Id' => $this->config->getAccountId(),
-            'iBill-Environment' => $this->config->getEnvironment(),
+            'ibill-version' => Config::IBILL_VERSION,
+            'ibill-account-id' => $this->config->getAccountId(),
+            'ibill-environment' => $this->config->getEnvironment(),
+            'ibill-trx-gateway-username' => $this->config->getPaymentGatewayUsername(),
             'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
