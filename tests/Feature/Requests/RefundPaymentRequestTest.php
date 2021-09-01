@@ -15,10 +15,7 @@ class RefundPaymentRequestTest extends TestCase
     /** @test */
     public function create_checkout()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $model = new ChargePayment($this->validParamsForAuthOrChargeModel());
@@ -43,10 +40,7 @@ class RefundPaymentRequestTest extends TestCase
     /** @test */
     public function validate_card_number()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'faulty-token'
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new RefundPayment(

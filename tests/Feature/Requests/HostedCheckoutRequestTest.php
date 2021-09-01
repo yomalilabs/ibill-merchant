@@ -24,11 +24,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function create_checkout()
     {
-        $client = new IBill([
-            // 'environment' => 'sandbox',
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new HostedCheckout(
@@ -58,10 +54,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function validate_access_token()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'faulty-token'
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new HostedCheckout(['amount' => 1000]);
@@ -74,10 +67,7 @@ class HostedCheckoutRequestTest extends TestCase
     /** @test */
     public function create_checkout_with_products_not_added_in_ibill()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new HostedCheckout(

@@ -14,10 +14,7 @@ class LookupPaymentRequestTest extends TestCase
     /** @test */
     public function do_lookup_request()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $response = $client->chargePayment($this->validChargePaymentModel());
@@ -39,10 +36,7 @@ class LookupPaymentRequestTest extends TestCase
     /** @test */
     public function validate_payment_id()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'faulty-token'
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new VoidPayment(

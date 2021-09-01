@@ -12,10 +12,7 @@ class ValidateHostedCheckoutRequestTest extends TestCase
     /** @test */
     public function validate_payment_id()
     {
-        $client = new IBill([
-            'account_id' => 1234,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new ValidateHostedCheckout(['payment_id' => 'faulty-payment']);

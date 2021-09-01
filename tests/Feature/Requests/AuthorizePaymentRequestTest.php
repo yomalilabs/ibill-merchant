@@ -14,10 +14,7 @@ class AuthorizePaymentRequestTest extends TestCase
     /** @test */
     public function do_authorize_payment_request()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new AuthorizePayment($this->validParamsForAuthOrChargeModel());
@@ -35,10 +32,7 @@ class AuthorizePaymentRequestTest extends TestCase
     /** @test */
     public function validate_card_number()
     {
-        $client = new IBill([
-            'account_id' => 6509,
-            'access_token' => 'access-token',
-        ]);
+        $client = $this->validIBillClient();
 
         try {
             $checkout = new AuthorizePayment(

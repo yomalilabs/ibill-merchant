@@ -2,12 +2,28 @@
 
 namespace Tests;
 
+use IBill\Config;
+use IBill\IBill;
 use IBill\Models\ChargePayment;
 use PHPUnit\Framework\TestCase as PHPTestCase;
 
 class TestCase extends PHPTestCase
 {
-    protected function validParamsForAuthOrChargeModel($overrides = [])
+    protected function validIBillClient()
+    {
+        return new IBill($this->validIBillClientParams());
+    }
+
+    protected function validIBillClientParams(array $overrides = [])
+    {
+        return array_merge([
+            'environment' => 'sandbox',
+            'account_id' => Config::TEST_ACCOUNT_ID,
+            'access_token' => Config::TEST_ACCESS_TOKEN,
+        ], $overrides);
+    }
+
+    protected function validParamsForAuthOrChargeModel(array $overrides = [])
     {
         return array_merge([
             'firstname' => 'Firstname',
