@@ -1,5 +1,6 @@
 <?php
 
+use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\LookupPayment;
@@ -10,16 +11,16 @@ echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
-    $iBill = new IBill([
-        // 'environment' => 'sandbox',
-        'account_id' => 6509,
-        'access_token' => 'access-token',
+    $client = new IBill([
+        'environment' => 'sandbox',
+        'account_id' => Config::TEST_ACCOUNT_ID,
+        'access_token' => Config::TEST_ACCESS_TOKEN,
     ]);
 
     $model = new LookupPayment([
         'payment_id' => $_GET['id'],
     ]);
-    $response = $iBill->lookupPayment($model);
+    $response = $client->lookupPayment($model);
 } catch (ApiException $e) {
     var_dump($e->error);
 }

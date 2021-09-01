@@ -1,5 +1,6 @@
 <?php
 
+use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\AuthorizePayment;
@@ -8,10 +9,10 @@ echo "<pre>" . "\r\n";
 require '../vendor/autoload.php';
 
 try {
-    $iBill = new IBill([
+    $client = new IBill([
         'environment' => 'sandbox',
-        'account_id' => 6509,
-        'access_token' => 'access-token',
+        'account_id' => Config::TEST_ACCOUNT_ID,
+        'access_token' => Config::TEST_ACCESS_TOKEN,
     ]);
 
     $model = new AuthorizePayment([
@@ -29,7 +30,7 @@ try {
 
         'order_id' => random_int(1, 99999),
     ]);
-    $response = $iBill->authorizePayment($model);
+    $response = $client->authorizePayment($model);
 } catch (ApiException $e) {
     var_dump('----');
     var_dump($e->message);
