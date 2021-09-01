@@ -16,7 +16,9 @@ class Config
     public const API_URL = 'https://api.ibill.com';
     public const API_URL_SANDBOX = 'http://api.ibill.test';
 
-    public const IBILL_VERSION = '2021-07-13';
+    public const IBILL_VERSION = '2021-08-01';
 
-    public const USER_AGENT = 'iBill-PHP/20210713';
+    public const USER_AGENT = 'iBill-PHP/20210801';
+
+    public const PAYMENT_GATEWAY_USERNAME = 'ibill_trx';
 }

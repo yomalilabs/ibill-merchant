@@ -19,6 +19,7 @@ class ApiConfig
     private $additionalHeaders = Config::ADDITIONAL_HEADERS;
     private $environment = Config::ENVIRONMENT;
     private $userAgent = Config::USER_AGENT;
+    private $paymentGatewayUsername = Config::PAYMENT_GATEWAY_USERNAME;
 
     public function __construct(array $configOptions = null)
     {
@@ -43,12 +44,16 @@ class ApiConfig
             $this->environment = $configOptions['environment'];
         }
 
-        if ($this->environment === 'sandbox') {
-            $this->baseUrl = Config::API_URL_SANDBOX;
-        }
+        // do not allow the customer to override
+        // if (isset($configOptions['payment_gateway_username'])) {
+        //     $this->paymentGatewayUsername = $configOptions['payment_gateway_username'];
+        // }
 
-        if ($this->environment === 'production') {
-            $this->baseUrl = Config::API_URL;
+        // when sandbox - append _sandbox to the gateway username
+
+        if ($this->environment === 'sandbox') {
+            // $this->baseUrl = Config::API_URL_SANDBOX;
+            $this->paymentGatewayUsername .= '_sandbox';
         }
     }
 
@@ -70,5 +75,10 @@ class ApiConfig
     public function getBaseUrl()
     {
         return $this->baseUrl;
+    }
+
+    public function getPaymentGatewayUsername()
+    {
+        return $this->paymentGatewayUsername;
     }
 }

@@ -9,7 +9,7 @@ require '../vendor/autoload.php';
 
 try {
     $iBill = new IBill([
-        // 'environment' => 'sandbox',
+        'environment' => 'sandbox',
         'account_id' => 6509,
         'access_token' => 'access-token',
     ]);

@@ -76,4 +76,21 @@ class ApiConfigTest extends TestCase
         }
         $this->assertFalse(isset($model));
     }
+
+    /** @test */
+    public function when_sandbox_append_to_the_gateway_username()
+    {
+        $model = new ApiConfig([
+            'account_id' => 1234,
+            'access_token' => 'access-token',
+        ]);
+        $this->assertEquals(Config::PAYMENT_GATEWAY_USERNAME, $model->getPaymentGatewayUsername());
+
+        $model = new ApiConfig([
+            'environment' => 'sandbox',
+            'account_id' => 1234,
+            'access_token' => 'access-token',
+        ]);
+        $this->assertEquals(Config::PAYMENT_GATEWAY_USERNAME . '_sandbox', $model->getPaymentGatewayUsername());
+    }
 }

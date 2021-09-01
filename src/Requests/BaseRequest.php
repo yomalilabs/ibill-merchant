@@ -59,11 +59,11 @@ class BaseRequest
             // var_dump($e->getMessage());
         }
 
-        // echo "\r\n" . "\r\n";
-        // echo "RESPONSE" . "\r\n";
-        // echo "\r\n" . "\r\n";
-        // var_dump((string) $response->getBody());
-        // echo "\r\n" . "\r\n";
+        echo "\r\n" . "\r\n";
+        echo "RESPONSE" . "\r\n";
+        echo "\r\n" . "\r\n";
+        var_dump((string) $response->getBody());
+        echo "\r\n" . "\r\n";
         if ($this->isValidResponse($response)) {
             return $this->formatResponse($response);
         }
