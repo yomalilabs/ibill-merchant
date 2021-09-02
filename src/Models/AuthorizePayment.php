@@ -20,6 +20,12 @@ class AuthorizePayment extends Model
 
     private $order_id;
 
+    // optional
+    private $phone;
+    private $city;
+    private $state;
+    private $country;
+
     public function __construct(array $attributes = null)
     {
         // amount must be in cents and bigger than 100
@@ -54,6 +60,19 @@ class AuthorizePayment extends Model
         $this->card_expiry_year = $attributes['card_expiry_year'];
 
         $this->order_id = $attributes['order_id'];
+
+        if (isset($options['phone'])) {
+            $this->phone = $options['phone'];
+        }
+        if (isset($options['city'])) {
+            $this->city = $options['city'];
+        }
+        if (isset($options['state'])) {
+            $this->state = $options['state'];
+        }
+        if (isset($options['country'])) {
+            $this->country = $options['country'];
+        }
     }
 
     public function toArray(): array
@@ -72,6 +91,12 @@ class AuthorizePayment extends Model
             'card_expiry_year' => $this->card_expiry_year,
 
             'order_id' => $this->order_id,
+
+            // optional
+            'phone' => $this->phone,
+            'city' => $this->city,
+            'state' => $this->state,
+            'country' => $this->country,
         ];
     }
 }

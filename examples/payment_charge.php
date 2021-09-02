@@ -29,6 +29,12 @@ try {
         'card_expiry_year' => 2025,
 
         'order_id' => random_int(1, 99999),
+
+        // optional
+        'phone' => 123456789,
+        'city' => 'Phoenix',
+        'state' => 'Arizona',
+        'country' => 'United States',
     ]);
     $response = $client->chargePayment($model);
 } catch (ApiException $e) {
