@@ -61,17 +61,17 @@ class AuthorizePayment extends Model
 
         $this->order_id = $attributes['order_id'];
 
-        if (isset($options['phone'])) {
-            $this->phone = $options['phone'];
+        if (isset($attributes['phone'])) {
+            $this->phone = $attributes['phone'];
         }
-        if (isset($options['city'])) {
-            $this->city = $options['city'];
+        if (isset($attributes['city'])) {
+            $this->city = $attributes['city'];
         }
-        if (isset($options['state'])) {
-            $this->state = $options['state'];
+        if (isset($attributes['state'])) {
+            $this->state = $attributes['state'];
         }
-        if (isset($options['country'])) {
-            $this->country = $options['country'];
+        if (isset($attributes['country'])) {
+            $this->country = $attributes['country'];
         }
     }
 
