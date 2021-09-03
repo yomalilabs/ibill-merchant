@@ -21,8 +21,8 @@ try {
     ]);
     $response = $client->captureAuthorizedPayment($model);
 } catch (ApiException $e) {
-    var_dump('ERROR');
-    var_dump($e->message);
+    echo "\nError:\n";
+    echo $e->message;
     exit;
 }
 

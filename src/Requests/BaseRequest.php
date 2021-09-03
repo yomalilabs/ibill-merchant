@@ -43,7 +43,7 @@ class BaseRequest
             'ibill-account-id' => $this->config->getAccountId(),
             'ibill-environment' => $this->config->getEnvironment(),
             'ibill-gateway-username' => $this->config->getPaymentGatewayUsername(),
-            // 'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
+            'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
         if (Config::IS_DEBUG) {
