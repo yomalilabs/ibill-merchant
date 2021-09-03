@@ -22,6 +22,7 @@ try {
     $response = $client->voidPayment($model);
 } catch (ApiException $e) {
     echo "\nError:\n";
+    echo "StatusCode: {$e->statusCode}\n";
     echo $e->message;
     exit;
 }

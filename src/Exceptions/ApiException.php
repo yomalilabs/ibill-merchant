@@ -11,10 +11,12 @@ class ApiException extends Exception
 {
     public $error;
     public $message;
+    public $statusCode;
 
-    public function __construct(string $message = '')
+    public function __construct(string $message = '', $statusCode = 200)
     {
         $this->error = $message;
         $this->message = $message;
+        $this->statusCode = $statusCode;
     }
 }

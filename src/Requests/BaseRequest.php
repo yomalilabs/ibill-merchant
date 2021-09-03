@@ -61,7 +61,7 @@ class BaseRequest
             if (Config::IS_DEBUG) {
                 echo "\r\n" . "\r\n";
                 echo "RESPONSE" . "\r\n";
-                var_dump("Status Code: " . $e->getMessage());
+                var_dump("Status Code: " . $e->getCode());
                 echo "\r\n";
                 var_dump((string) $e->getResponse()->getBody());
                 echo "\r\n--------------" . "\r\n";
@@ -71,12 +71,12 @@ class BaseRequest
             if ($e->hasResponse() && $e->getResponse()->getBody()) {
                 $data = json_decode((string) $e->getResponse()->getBody());
                 if ($data && isset($data->error)) {
-                    throw new ApiException($data->error);
+                    throw new ApiException($data->error, $e->getCode());
                 }
             }
 
 
-            throw new ApiException($e->getMessage());
+            throw new ApiException($e->getMessage(), $e->getCode());
         }
 
         if (Config::IS_DEBUG) {
@@ -91,7 +91,7 @@ class BaseRequest
             return $this->formatResponse($response);
         }
 
-        throw new ApiException("401 - Unauthorized");
+        throw new ApiException("401 - Unauthorized", $response->getStatusCode());
     }
 
     /**
@@ -119,10 +119,10 @@ class BaseRequest
             // var_dump((string) $response->getBody());
 
             if ($data && isset($data->error)) {
-                throw new ApiException($data->error);
+                throw new ApiException($data->error, $response->getStatusCode());
             }
         }
 
-        throw new ApiException("400 - Bad Request. The request was unacceptable, often due to missing a required parameter.");
+        throw new ApiException("400 - Bad Request. The request was unacceptable, often due to missing a required parameter.", $response->getStatusCode());
     }
 }
