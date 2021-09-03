@@ -29,6 +29,23 @@ class ChargePaymentTest extends TestCase
     }
 
     /** @test */
+    public function initialize_model_with_optional_params()
+    {
+        $model = new ChargePayment($this->validParamsForAuthOrChargeModel([
+            'phone' => 123456789,
+            'city' => 'Phoenix',
+            'state' => 'Arizona',
+            'country' => 'United States',
+        ]));
+
+        $productArray = $model->toArray();
+        $this->assertEquals(123456789, $productArray['phone']);
+        $this->assertEquals('Phoenix', $productArray['city']);
+        $this->assertEquals('Arizona', $productArray['state']);
+        $this->assertEquals('United States', $productArray['country']);
+    }
+
+    /** @test */
     public function validate_amount()
     {
         // no amount passed
