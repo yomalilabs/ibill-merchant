@@ -4,6 +4,7 @@ namespace IBill\Requests;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\Models\ApiConfig;
@@ -41,12 +42,13 @@ class BaseRequest
             'ibill-version' => Config::IBILL_VERSION,
             'ibill-account-id' => $this->config->getAccountId(),
             'ibill-environment' => $this->config->getEnvironment(),
-            'ibill-trx-gateway-username' => $this->config->getPaymentGatewayUsername(),
-            'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
+            'ibill-gateway-username' => $this->config->getPaymentGatewayUsername(),
+            // 'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
         if (Config::IS_DEBUG) {
             echo "\r\n" . "URL: {$url}" . "\r\n";
+            print_r($headers);
             print_r($body->toArray());
         }
 
@@ -55,25 +57,41 @@ class BaseRequest
                 'json' => $body->toArray(),
                 'headers' => $headers
             ]);
-        } catch (Exception $e) {
-            // var_dump('-----------------------------------');
+        } catch (ClientException $e) {
+            if (Config::IS_DEBUG) {
+                echo "\r\n" . "\r\n";
+                echo "RESPONSE" . "\r\n";
+                var_dump("Status Code: " . $e->getMessage());
+                echo "\r\n";
+                var_dump((string) $e->getResponse()->getBody());
+                echo "\r\n--------------" . "\r\n";
+            }
+
+            // handle and format the exception and return the error message
+            if ($e->hasResponse() && $e->getResponse()->getBody()) {
+                $data = json_decode((string) $e->getResponse()->getBody());
+                if ($data && isset($data->error)) {
+                    throw new ApiException($data->error);
+                }
+            }
+
+
             throw new ApiException($e->getMessage());
-            // var_dump($e->getCode());
-            // var_dump($e->getMessage());
         }
 
         if (Config::IS_DEBUG) {
             echo "\r\n" . "\r\n";
-            echo "RESPONSE" . "\r\n";
-            echo "\r\n" . "\r\n";
+            echo "RESPONSE" . "\n";
+            echo "Status Code: " . $response->getStatusCode();
+            echo "\n";
             var_dump((string) $response->getBody());
-            echo "\r\n" . "\r\n";
+            echo "\n--------------" . "\r";
         }
         if ($this->isValidResponse($response)) {
             return $this->formatResponse($response);
         }
 
-        throw new ApiException("Whoops! Something went wrong.");
+        throw new ApiException("401 - Unauthorized");
     }
 
     /**
@@ -105,6 +123,6 @@ class BaseRequest
             }
         }
 
-        throw new ApiException("Whoops! Something went wrong.");
+        throw new ApiException("400 - Bad Request. The request was unacceptable, often due to missing a required parameter.");
     }
 }
