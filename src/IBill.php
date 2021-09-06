@@ -56,6 +56,9 @@ class IBill
 
     /**
      * Do a request to validate the payment
+     *
+     * @param ValidateHostedCheckout $model
+     * @return ValidateHostedCheckoutResponse
      */
     public function validateHostedCheckout(ValidateHostedCheckout $model): ValidateHostedCheckoutResponse
     {
