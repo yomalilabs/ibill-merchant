@@ -35,10 +35,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "post-autoload-dump": [
-
-        ]
-    }
+    "prefer-stable": true
 }
