@@ -1,9 +1,9 @@
 {
-    "name": "yomali/ibill-merchant",
-    "type": "project",
+    "name": "yomalilabs/ibill-merchant",
+    "type": "library",
     "description": "Merchant API for iBill.",
     "keywords": ["Yomali", "iBill", "Merchant"],
-    "license": "iBill",
+    "license": "MIT",
     "require": {
         "php": "^7.3",
         "guzzlehttp/guzzle": "^7.3"
