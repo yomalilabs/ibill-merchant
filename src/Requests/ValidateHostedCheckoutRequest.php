@@ -17,6 +17,7 @@ class ValidateHostedCheckoutRequest extends BaseRequest
     {
         $url = $this->config->getBaseUrl() . '/hosted/checkout/validate';
 
+
         $response = $this->post($url, $body);
 
         return new ValidateHostedCheckoutResponse($response);
