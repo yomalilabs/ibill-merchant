@@ -7,7 +7,6 @@ use IBill\Exceptions\ApiException;
 class HostedCheckout extends Model
 {
     // required fields
-    private $amount;
     private $reference;
     private $cancel_url;
     private $success_url;
@@ -23,16 +22,13 @@ class HostedCheckout extends Model
             'reference',
             'success_url',
             'cancel_url',
+            'products',
         ]);
 
         // required
         $this->reference = $attributes['reference'];
         $this->success_url = $attributes['success_url'];
         $this->cancel_url = $attributes['cancel_url'];
-
-        if (isset($attributes['amount'])) {
-            $this->amount = $attributes['amount'];
-        }
 
         if (isset($attributes['shipping_amount'])) {
             $this->shipping_amount = $attributes['shipping_amount'];
@@ -62,7 +58,6 @@ class HostedCheckout extends Model
             $products[] = $product->toArray();
         }
         return [
-            'amount' => $this->amount,
             'reference' => $this->reference,
             'success_url' => $this->success_url,
             'cancel_url' => $this->cancel_url,

@@ -13,7 +13,6 @@ class HostedCheckoutRequestTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'amount' => 2000, // in cents
             'reference' => '123456789',
             'cancel_url' => 'http://merchant.ibill.test/cancel',
             'success_url' => 'http://merchant.ibill.test/success'
@@ -48,6 +47,7 @@ class HostedCheckoutRequestTest extends TestCase
         $this->assertEquals(1, $response->success);
         $this->assertNull($response->error);
         $this->assertNotNull($response->url);
+        $this->assertEquals(4450, $response->amount);
         $this->assertEquals(5, strpos($response->url, '://checkout.ibill.com?token='));
     }
 
@@ -91,6 +91,7 @@ class HostedCheckoutRequestTest extends TestCase
         $this->assertEquals(1, $response->success);
         $this->assertNull($response->error);
         $this->assertNotNull($response->url);
+        $this->assertEquals(30000, $response->amount);
         $this->assertEquals(5, strpos($response->url, '://checkout.ibill.com?token='));
     }
 }

@@ -12,11 +12,15 @@ class HostedCheckoutTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'amount' => 2000, // in cents
             'reference' => '123456789',
             'cancel_url' => 'http://merchant.ibill.test/cancel',
-            'success_url' => 'http://merchant.ibill.test/success'
-
+            'success_url' => 'http://merchant.ibill.test/success',
+            'products' => [
+                new Product([
+                    'quantity' => 1,
+                    'amount' => 1000,
+                ]),
+            ],
         ], $overrides);
     }
 
@@ -26,7 +30,6 @@ class HostedCheckoutTest extends TestCase
         $model = new HostedCheckout($this->validParams());
 
         $data = $model->toArray();
-        $this->assertEquals(2000, $data['amount']);
         $this->assertEquals('123456789', $data['reference']);
         $this->assertEquals('http://merchant.ibill.test/cancel', $data['cancel_url']);
         $this->assertEquals('http://merchant.ibill.test/success', $data['success_url']);

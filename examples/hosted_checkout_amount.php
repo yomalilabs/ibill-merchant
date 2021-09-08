@@ -16,23 +16,22 @@ try {
     ]);
 
     $checkout = new HostedCheckout([
-        // 'amount' => 2000,
         'reference' => '123456789',
         'shipping_fee' => 5000, // optional
         'taxes_fee' => 5000, // optional
         'products' => [
             new Product([
                 'quantity' => 1,
-                'codename' => 'product1',
-                // 'amount' => 1000,
-                // 'name' => 'My Product',
+                // 'codename' => 'product1',
+                'amount' => 1000,
+                'name' => 'My Product',
                 // 'image_url' => 'http://google.com',
             ]),
             new Product([
                 'quantity' => 2,
-                'codename' => 'product1',
-                // 'amount' => 1000,
-                // 'name' => 'My Product',
+                // 'codename' => 'product1',
+                'amount' => 1000,
+                'name' => 'My Product',
                 // 'image_url' => 'http://google.com',
             ]),
         ],
