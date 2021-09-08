@@ -18,7 +18,7 @@ try {
     $checkout = new HostedCheckout([
         'reference' => '123456789',
         'shipping_amount' => 5000, // optional
-        'taxes_amount' => 5000, // optional
+        'tax_amount' => 5000, // optional
         'products' => [
             new Product([
                 'quantity' => 1,
