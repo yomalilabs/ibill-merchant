@@ -13,7 +13,7 @@ use Tests\TestCase;
 class RefundPaymentRequestTest extends TestCase
 {
     /** @test */
-    public function create_checkout()
+    public function do_refund_request()
     {
         $client = $this->validIBillClient();
 

@@ -12,7 +12,7 @@ use Tests\TestCase;
 class VoidPaymentRequestTest extends TestCase
 {
     /** @test */
-    public function create_checkout()
+    public function do_void_request()
     {
         $client = $this->validIBillClient();
 
