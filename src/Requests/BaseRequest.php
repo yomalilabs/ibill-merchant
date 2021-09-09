@@ -42,7 +42,6 @@ class BaseRequest
             'ibill-version' => Config::IBILL_VERSION,
             'ibill-account-id' => $this->config->getAccountId(),
             'ibill-environment' => $this->config->getEnvironment(),
-            'ibill-gateway-username' => $this->config->getPaymentGatewayUsername(),
             'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 
@@ -74,7 +73,6 @@ class BaseRequest
                     throw new ApiException($data->error, $e->getCode());
                 }
             }
-
 
             throw new ApiException($e->getMessage(), $e->getCode());
         }

@@ -19,7 +19,6 @@ class ApiConfig
     private $additionalHeaders = Config::ADDITIONAL_HEADERS;
     private $environment = Config::ENVIRONMENT;
     private $userAgent = Config::USER_AGENT;
-    private $paymentGatewayUsername = Config::PAYMENT_GATEWAY_USERNAME;
 
     public function __construct(array $configOptions = null)
     {
@@ -53,7 +52,6 @@ class ApiConfig
         if (isset($configOptions['environment']) && $configOptions['environment'] === 'sandbox') {
             // $this->baseUrl = Config::API_URL_SANDBOX;
             $this->environment = 'sandbox';
-            $this->paymentGatewayUsername .= '_sandbox';
         }
     }
 
@@ -75,10 +73,5 @@ class ApiConfig
     public function getBaseUrl()
     {
         return $this->baseUrl;
-    }
-
-    public function getPaymentGatewayUsername()
-    {
-        return $this->paymentGatewayUsername;
     }
 }
