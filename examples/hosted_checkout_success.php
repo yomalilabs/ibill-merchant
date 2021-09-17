@@ -1,5 +1,6 @@
 <?php
 
+use IBill\Config;
 use IBill\Exceptions\ApiException;
 use IBill\IBill;
 use IBill\Models\ValidateHostedCheckout;
@@ -18,8 +19,9 @@ print_r($_GET);
 
 try {
     $client = new IBill([
-        'accountId' => 1234,
-        'accessToken' => 'access-token' // private key (server) + public key (js)
+        'environment' => 'sandbox',
+        'account_id' => Config::TEST_ACCOUNT_ID,
+        'access_token' => Config::TEST_ACCESS_TOKEN,
     ]);
 
     $validatePayment = new ValidateHostedCheckout([
@@ -27,8 +29,10 @@ try {
     ]);
     $response = $client->validateHostedCheckout($validatePayment);
 } catch (ApiException $e) {
-    var_dump("ERRORRRRRRRR");
-    var_dump($e->error);
+    var_dump('----');
+    var_dump($e->message);
+    var_dump('----');
+    exit;
 }
 
 var_dump($response);

@@ -46,10 +46,5 @@ try {
     exit;
 }
 
-// uncomment for production
-// header("Location: {$response->url}");
-
-// for testing purpose only
-
 var_dump($response);
 echo '<a target="_blank" href="' . $response->url . '">LINK TO THE CHECKOUT</a>';
