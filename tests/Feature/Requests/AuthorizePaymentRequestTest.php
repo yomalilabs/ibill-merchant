@@ -30,6 +30,20 @@ class AuthorizePaymentRequestTest extends TestCase
     }
 
     /** @test */
+    public function validate_account_id()
+    {
+        $client = new IBill($this->validIBillClientParams(["account_id" => 12]));
+        try {
+            $checkout = new AuthorizePayment(
+                $this->validParamsForAuthOrChargeModel()
+            );
+            $response = $client->authorizePayment($checkout);
+        } catch (ApiException $e) {
+            $this->assertNotNull($e->message);
+        }
+    }
+
+    /** @test */
     public function validate_card_number()
     {
         $client = $this->validIBillClient();
