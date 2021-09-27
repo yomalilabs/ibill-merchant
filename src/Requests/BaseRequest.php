@@ -39,9 +39,9 @@ class BaseRequest
             'user-agent'    => Config::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json',
-            'ibill-version' => Config::IBILL_VERSION,
-            'ibill-account-id' => $this->config->getAccountId(),
-            'ibill-environment' => $this->config->getEnvironment(),
+            'IBILL-VERSION' => Config::IBILL_VERSION,
+            'IBILL-ACCOUNT-ID' => $this->config->getAccountId(),
+            'IBILL-ENVIRONMENT' => $this->config->getEnvironment(),
             'Authorization' => sprintf('Bearer %1$s', $this->config->getAccessToken())
         ];
 

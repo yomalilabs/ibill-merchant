@@ -12,6 +12,8 @@ class ValidateHostedCheckoutResponse extends Response
     // the url the client will be redirected to view the checkout page
     public $status = ''; // valid | validated
 
+    public $reference = '';
+
     public function __construct(stdClass $response = null)
     {
         parent::__construct($response);
@@ -22,6 +24,11 @@ class ValidateHostedCheckoutResponse extends Response
 
         if (isset($response->amount)) {
             $this->amount = $response->amount;
+        }
+
+        // merchant reference when checkout was created
+        if (isset($response->reference)) {
+            $this->reference = $response->reference;
         }
     }
 }

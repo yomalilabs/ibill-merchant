@@ -27,4 +27,14 @@ class ValidateHostedCheckoutResponseTest extends TestCase
 
         $this->assertEquals('valid', $response->status);
     }
+
+    /** @test */
+    public function can_set_reference()
+    {
+        $class = new stdClass;
+        $class->reference = 'merchant-reference-123';
+        $response = new ValidateHostedCheckoutResponse($class);
+
+        $this->assertEquals('merchant-reference-123', $response->reference);
+    }
 }
