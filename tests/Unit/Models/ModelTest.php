@@ -9,12 +9,6 @@ use PHPUnit\Framework\TestCase;
 class ModelTest extends TestCase
 {
     /** @test */
-    public function faill()
-    {
-        $this->assertEquals(true, false);
-    }
-
-    /** @test */
     public function validate_exists()
     {
         try {
