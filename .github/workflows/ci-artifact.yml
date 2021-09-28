@@ -3,7 +3,7 @@ on: push
 
 jobs:
   build-develop:
-    name: Build [Development]
+    name: Build and Run Tests [Development]
     if: ${{ github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-20.04
     steps:
@@ -37,5 +37,5 @@ jobs:
               --no-suggest \
               --no-progress
 
-      - name: test
+      - name: Unit Tests
         run: php vendor/phpunit/phpunit/phpunit
