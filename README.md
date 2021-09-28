@@ -23,4 +23,4 @@ You can trigger and validate hosted checkout request with the payment_id.
  - Lookup Payment Information
 
 ## Tests
-OK (99 tests, 224 assertions)
+OK (100 tests, 225 assertions)
