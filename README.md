@@ -1,5 +1,7 @@
 # Merchant Package for iBill API
 
+![example workflow](https://github.com/yomalilabs/ibill-merchant/actions/workflows/build-and-tests/badge.svg)
+
 ## How To Install
  - Download the repository to your computer.
  - `composer install`
