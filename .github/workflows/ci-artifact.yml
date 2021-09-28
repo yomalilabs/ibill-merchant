@@ -13,7 +13,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 7.3
           tools: composer:v2
 
       - name: Validate composer
@@ -37,3 +37,6 @@ jobs:
               --no-suggest \
               --no-progress \
               --no-dev
+
+      - name: test
+        run: php vendor/phpunit/phpunit/phpunit
