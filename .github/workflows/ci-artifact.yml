@@ -35,8 +35,7 @@ jobs:
           composer install \
               --prefer-dist \
               --no-suggest \
-              --no-progress \
-              --no-dev
+              --no-progress
 
       - name: test
         run: php vendor/phpunit/phpunit/phpunit
