@@ -1,9 +1,9 @@
 # Merchant Package for iBill API  ![GitHub Action (Build and Run Tests)](https://github.com/yomalilabs/ibill-merchant/actions/workflows/build-and-tests.yml/badge.svg?branch=develop)
 
-[Documentation](https://ibill.readme.io/docs)
+[Merchant Documentation](https://ibill.readme.io/docs)
 
 ## How To Install
- - Download the repository to your computer.
+ - Download the repository to your computer. or `composer require yomalilabs/ibill-merchant`
  - `composer install`
  - Look in the `/examples` directory for basic usage.
 
