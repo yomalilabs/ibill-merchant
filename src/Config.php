@@ -17,8 +17,6 @@ class Config
     public const IBILL_VERSION = '2021-08-01';
     public const USER_AGENT = 'iBill-PHP/20210801';
 
-    public const PAYMENT_GATEWAY_USERNAME = 'ibill_trx';
-
     public const IS_DEBUG = false;
     public const TEST_ACCOUNT_ID = 6509;
     public const TEST_ACCESS_TOKEN = 'access-token';
