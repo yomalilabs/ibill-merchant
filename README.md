@@ -5,7 +5,7 @@
 ## How To Install
  - Download the repository to your computer. or `composer require yomalilabs/ibill-merchant`
  - `composer install`
- - Look in the `/examples` directory for basic usage.
+ - Head over to the `/examples` directory to see the usage of the requests.
 
 ## Hosted Checkout
 You can trigger a hosted checkout request that will create the session and store the checkout.
