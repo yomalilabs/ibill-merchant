@@ -46,7 +46,7 @@ class Product extends Model
             $this->imageUrl = $options['image_url'];
         }
 
-        
+
     }
 
     public function toArray(): array

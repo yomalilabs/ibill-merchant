@@ -7,6 +7,8 @@ namespace IBill;
  */
 class Config
 {
+    public $SSL_VERIFY = true;
+
     public const TIMEOUT = 60;
     public const ADDITIONAL_HEADERS = [];
     public const ENVIRONMENT = 'production';
