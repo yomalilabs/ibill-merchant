@@ -34,7 +34,7 @@ class BaseRequest
      */
     protected function post(string $url, Model $body)
     {
-        $client = new Client();
+        $client = new Client(['verify' => Config::$SSL_VERIFY]);
         $headers = [
             'user-agent'    => Config::USER_AGENT,
             'Accept'        => 'application/json',
