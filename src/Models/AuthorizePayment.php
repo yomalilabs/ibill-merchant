@@ -26,6 +26,8 @@ class AuthorizePayment extends Model
     private $state;
     private $country;
 
+    private $source;
+
     public function __construct(array $attributes = null)
     {
         // amount must be in cents and bigger than 100
@@ -73,6 +75,11 @@ class AuthorizePayment extends Model
         if (isset($attributes['country'])) {
             $this->country = $attributes['country'];
         }
+
+        if (isset($attributes['source']))
+        {
+            $this->source = $attributes['source'];
+        }
     }
 
     public function toArray(): array
@@ -97,6 +104,8 @@ class AuthorizePayment extends Model
             'city' => $this->city,
             'state' => $this->state,
             'country' => $this->country,
+
+            'source' => $this->source
         ];
     }
 }

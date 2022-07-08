@@ -24,6 +24,8 @@ class ChargePayment extends Model
     private $state;
     private $country;
 
+    private $source;
+
     public function __construct(array $attributes = null)
     {
         $this->validateExists($attributes, [
@@ -66,6 +68,10 @@ class ChargePayment extends Model
         }
         if (isset($attributes['country'])) {
             $this->country = $attributes['country'];
+        }
+        if (isset($attributes['source']))
+        {
+            $this->source = $attributes['source'];
         }
     }
 

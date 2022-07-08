@@ -11,7 +11,7 @@ class Config
 
     public const TIMEOUT = 60;
     public const ADDITIONAL_HEADERS = [];
-    public const ENVIRONMENT = 'production';
+    public const ENVIRONMENT = 'sandbox';
 
     public const API_URL = 'https://api.ibill.com';
     public const API_URL_SANDBOX = 'http://api.ibill.test';
@@ -20,6 +20,6 @@ class Config
     public const USER_AGENT = 'iBill-PHP/20210801';
 
     public const IS_DEBUG = false;
-    public const TEST_ACCOUNT_ID = 6509;
-    public const TEST_ACCESS_TOKEN = 'access-token';
+    public const TEST_ACCOUNT_ID = 7407;
+    public const TEST_ACCESS_TOKEN = '0cf369927992b63f785c1e9c12049dfaaff58e71';   
 }

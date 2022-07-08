@@ -16,11 +16,11 @@ try {
     ]);
 
     $model = new ChargePayment([
-        'firstname' => 'Firstname',
-        'lastname' => 'Lastname',
-        'email' => 'info@example.com',
-        'address' => '1234 Fake Address',
-        'zip' => 12345,
+        'firstname' => 'Test',
+        'lastname' => 'User',
+        'email' => 'user3@example.com',
+        'address' => '6 Pheasant Run',
+        'zip' => '07733',
 
         'amount' => 1025,
         'card_number' => 6011111111111117,
@@ -32,9 +32,11 @@ try {
 
         // optional
         'phone' => 123456789,
-        'city' => 'Phoenix',
-        'state' => 'Arizona',
+        'city' => 'Holmdel',
+        'state' => 'NJ',
         'country' => 'United States',
+
+        'source' => 'PHP SDK Test'
     ]);
     $response = $client->chargePayment($model);
 } catch (ApiException $e) {
