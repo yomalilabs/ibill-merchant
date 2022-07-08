@@ -73,6 +73,14 @@ class ChargePayment extends Model
         {
             $this->source = $attributes['source'];
         }
+    		
+		// Set the 3DS data
+		$this->threeds_cavv					 = $attributes['threeds_cavv'];
+		$this->threeds_validated		 	 = $attributes['threeds_validated'];
+		$this->threeds_transaction_id		 = $attributes['threeds_transaction_id'];
+		$this->threeds_server_transaction_id = $attributes['threeds_server_transaction_id'];
+		$this->threeds_version				 = $attributes['threeds_version'];
+		$this->threeds_parres_status		 = $attributes['threeds_parres_status'];    
     }
 
     public function toArray(): array
@@ -98,6 +106,15 @@ class ChargePayment extends Model
             'city' => $this->city,
             'state' => $this->state,
             'country' => $this->country,
+
+            'source' => $this->source,
+			
+			'threeds_cavv' => $this->threeds_cavv,
+			'threeds_validated' => $this->threeds_validated,
+			'threeds_transaction_id' => $this->threeds_transaction_id,
+			'threeds_server_transaction_id' => $this->threeds_server_transaction_id,
+			'threeds_version' => $this->threeds_version,
+			'threeds_parres_status' => $this->threeds_parres_status,			
         ];
     }
 }
